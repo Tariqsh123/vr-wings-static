@@ -84,14 +84,15 @@
     </script>
 
     <!-- Hero Section -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
-            }
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
         }
-    </script>
+    }
+</script>
+
 <div class="vr-section" id="vrSection">
     <div class="bg-gradient-overlay" id="bgGradient"></div>
     <canvas id="smoky-canvas"></canvas>
@@ -151,12 +152,9 @@
     let smoothPosition = { x: 0, y: 0, z: 0 };
     let videoTriggered = false;
     
-    // PROGRESS: direct mapping from scroll delta (smooth bidirectional)
-    let progress = 0;        // 0 to 1
+    // PROGRESS
+    let progress = 0;
     let targetProgress = 0;
-    
-    // no auto transition except scroll-driven
-    let animationFrameId = null;
     
     // --- RESPONSIVE ---
     function updateResponsive() {
@@ -191,38 +189,32 @@
         }
     }
     
-    // UI update based on current progress (direct)
+    // UI update
     function updateUI() {
         const p = progress;
         const videoActive = isVideoVisible;
         
-        // z-index logic
         if (p > 0.01 && p < 0.99 && !isVideoVisible) {
             container.classList.add('high-z');
         } else {
             container.classList.remove('high-z');
         }
         
-        // text color - reduce whitening
         if (videoActive) {
             mainHeading.style.color = "#ffffff";
-            mainHeading.style.textShadow = "0 2px 18px rgba(0,0,0,0.8)";
-            ctaButton.style.boxShadow = "0 18px 40px rgba(128, 0, 255, 0.75)";
+            mainHeading.style.textShadow = "0 2px 20px rgba(0,0,0,0.7)";
+            ctaButton.style.boxShadow = "0 18px 40px rgba(128, 0, 255, 0.65)";
         } else {
-            mainHeading.style.color = "#cd9eff";
-            mainHeading.style.textShadow = p > 0.78 ? "0 0 22px rgba(180,130,255,0.6)" : "none";
-            ctaButton.style.boxShadow = p > 0.78 ? "0 20px 48px rgba(200,160,255,0.55)" : "0 10px 30px rgba(128, 0, 255, 0.45)";
+            mainHeading.style.color = "#d4b5ff";
+            mainHeading.style.textShadow = p > 0.78 ? "0 0 22px rgba(160,100,255,0.5)" : "none";
+            ctaButton.style.boxShadow = p > 0.78 ? "0 20px 48px rgba(200,160,255,0.5)" : "0 10px 30px rgba(128, 0, 255, 0.4)";
         }
         
         const btnTranslate = Math.min(p * 4.5, 16);
         ctaButton.style.transform = `translateY(${btnTranslate}px)`;
         
-        // gradient darkness - keep rich
-        if (!isVideoVisible && p < 0.08) {
-            bgGradient.style.opacity = "0.92";
-        } else {
-            bgGradient.style.opacity = videoActive ? "0" : Math.max(1 - p * 2.2, 0.18);
-        }
+        // bg gradient always visible - no black canvas
+        bgGradient.style.opacity = videoActive ? "0.3" : "0.95";
         
         const modelTopPercent = isMobile 
             ? 0.85 * (1 - Math.min(p * 7.2, 1))
@@ -243,7 +235,7 @@
             progressBarContainer.style.display = "none";
         }
         
-        if (isModelVisible && p < 0.06 && !isVideoVisible) {
+        if (isModelVisible && p < 0.08 && !isVideoVisible) {
             scrollHintEl.style.opacity = "1";
         } else {
             scrollHintEl.style.opacity = "0";
@@ -258,7 +250,7 @@
         }
     }
     
-    // Video trigger at 42% exactly
+    // Video trigger at 42%
     function checkAndTriggerVideo() {
         if (!isVideoVisible && progress >= 0.42 && !videoTriggered && isModelVisible) {
             videoTriggered = true;
@@ -274,14 +266,19 @@
         }
     }
     
-    // Reverse when user scrolls UP while video is visible, with direct progress mapping
-    function handleVideoReverseIfNeeded(deltaY) {
+    // Reverse when user scrolls UP and body at top
+    function reverseVideoIfAtTop() {
         if (!isVideoVisible) return false;
-        // deltaY negative = scroll up
-        if (deltaY < 0 && !isReversing) {
-            // start reversing
+        if (isReversing) return false;
+        
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const isAtTop = scrollTop <= 15;
+        
+        if (isAtTop) {
             isReversing = true;
+            videoOverlay.style.transition = "opacity 0.25s ease";
             videoOverlay.style.opacity = "0";
+            
             setTimeout(() => {
                 videoOverlay.style.display = "none";
                 videoOverlay.style.opacity = "";
@@ -295,31 +292,29 @@
                 videoTriggered = false;
                 document.body.classList.add('locked');
                 
-                // Keep progress same? but we are going back, set target progress to current *something? user will scroll further up to reduce progress.
-                // But we set reversing flag off and allow scroll to directly impact progress again.
-                isReversing = false;
+                progress = 0.42;
+                targetProgress = 0.42;
                 updateUI();
-            }, 280);
+                
+                setTimeout(() => {
+                    isReversing = false;
+                }, 100);
+            }, 200);
             return true;
         }
         return false;
     }
     
-    // ----- SCROLL HANDLER (Direct bidirectional mapping) -----
-    let accumulatedDelta = 0;
-    let lastScrollTime = 0;
-    
+    // Scroll handler
     function addProgressFromScroll(deltaY) {
         if (isVideoVisible) {
-            // if video visible and scrolling up -> reverse trigger handled separately
-            if (deltaY < 0 && !isReversing) {
-                handleVideoReverseIfNeeded(deltaY);
+            if (deltaY < 0) {
+                reverseVideoIfAtTop();
             }
             return;
         }
         if (isReversing) return;
         
-        // sensitivity: scroll to progress mapping smoothly
         let sensitivity = isMobile ? 0.0014 : 0.00048;
         let deltaChange = deltaY * sensitivity;
         let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
@@ -330,7 +325,6 @@
             updateUI();
             checkAndTriggerVideo();
             
-            // lock body when progress between 0 and 1
             if (progress > 0 && progress < 1 && !isVideoVisible) {
                 document.body.classList.add('locked');
             } else if (progress === 0 && !isVideoVisible) {
@@ -339,31 +333,28 @@
         }
     }
     
-    // Wheel event
     function handleWheel(e) {
         if (isReversing) {
             e.preventDefault();
             return;
         }
         if (isVideoVisible) {
-            // only handle scrolling up to reverse
             if (e.deltaY < 0) {
                 e.preventDefault();
-                handleVideoReverseIfNeeded(e.deltaY);
+                reverseVideoIfAtTop();
             }
             return;
         }
-        // normal scroll on model
         if (progress > 0 && progress < 1) {
             e.preventDefault();
         }
         addProgressFromScroll(e.deltaY);
     }
     
-    // Touch events for mobile (bidirectional)
     function handleTouchStart(e) {
         touchStartY = e.touches[0].clientY;
     }
+    
     function handleTouchMove(e) {
         if (isReversing) {
             e.preventDefault();
@@ -373,13 +364,13 @@
         if (now - lastTouchTime < 16) return;
         lastTouchTime = now;
         const currentY = e.touches[0].clientY;
-        let deltaY = touchStartY - currentY; // positive = scroll down
+        let deltaY = touchStartY - currentY;
         touchStartY = currentY;
         
         if (isVideoVisible) {
-            if (deltaY < 0) { // swiping up => reverse
+            if (deltaY < 0) {
                 e.preventDefault();
-                handleVideoReverseIfNeeded(deltaY);
+                reverseVideoIfAtTop();
             }
             return;
         }
@@ -400,10 +391,7 @@
         }
     }
     
-    // fallback to ensure body lock
-    function isAtTopOfPage() { return window.scrollY <= 10; }
-    
-    // --- SMOKY PARTICLES (no whitening, subtle)---
+    // --- SMOKY PARTICLES ---
     let smokyAnimFrame = null;
     let particlesArray = [];
     let smokyCtx = null;
@@ -419,6 +407,7 @@
             window.addEventListener('resize', resizeSmokyCanvas);
         }
     }
+    
     function resizeSmokyCanvas() {
         if (!smokyCanvas) return;
         smokyWidth = window.innerWidth;
@@ -427,6 +416,7 @@
         smokyCanvas.height = smokyHeight;
         if (particlesArray.length > 0) initParticles();
     }
+    
     function initParticles() {
         particlesArray = [];
         const count = Math.min(55, Math.floor(smokyWidth / 24));
@@ -437,19 +427,20 @@
                 radius: 50 + Math.random() * 100,
                 speedX: (Math.random() - 0.5) * 0.18,
                 speedY: (Math.random() - 0.5) * 0.08,
-                opacity: 0.06 + Math.random() * 0.16,
+                opacity: 0.08 + Math.random() * 0.18,
                 blur: 20 + Math.random() * 35,
             });
         }
     }
+    
     function startSmokyAnimation() {
         if (smokyAnimFrame) cancelAnimationFrame(smokyAnimFrame);
         function animateSmoky() {
             if (!smokyCtx || smokyCanvas.style.display !== 'block') return;
             smokyCtx.clearRect(0, 0, smokyWidth, smokyHeight);
             const grad = smokyCtx.createRadialGradient(smokyWidth*0.7, smokyHeight*0.3, 30, smokyWidth*0.75, smokyHeight*0.33, smokyWidth);
-            grad.addColorStop(0, 'rgba(180,130,255,0.08)');
-            grad.addColorStop(0.6, 'rgba(100,70,180,0.03)');
+            grad.addColorStop(0, 'rgba(180,130,255,0.12)');
+            grad.addColorStop(0.6, 'rgba(100,70,180,0.06)');
             grad.addColorStop(1, 'rgba(0,0,0,0)');
             smokyCtx.fillStyle = grad;
             smokyCtx.fillRect(0, 0, smokyWidth, smokyHeight);
@@ -462,7 +453,7 @@
                 if (p.y > smokyHeight + p.radius) p.y = -p.radius;
                 const grd = smokyCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
                 grd.addColorStop(0, `rgba(210,180,255,${p.opacity * 0.7})`);
-                grd.addColorStop(0.8, `rgba(140,100,200,${p.opacity * 0.2})`);
+                grd.addColorStop(0.8, `rgba(140,100,200,${p.opacity * 0.25})`);
                 smokyCtx.save();
                 smokyCtx.filter = `blur(${p.blur}px)`;
                 smokyCtx.fillStyle = grd;
@@ -478,20 +469,20 @@
         animateSmoky();
     }
     
-    // --- 3D: LOAD vr-headset.glb ---
+    // --- 3D ---
     function createFallbackModel() {
         const group = new THREE.Group();
-        const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe8e2ff, metalness: 0.7, roughness: 0.18, emissive: 0x1f0038, emissiveIntensity: 0.2 });
+        const bodyMat = new THREE.MeshStandardMaterial({ color: 0xcbb5ff, metalness: 0.65, roughness: 0.2, emissive: 0x331166, emissiveIntensity: 0.15 });
         const bodyMain = new THREE.Mesh(new THREE.BoxGeometry(1.26, 0.6, 1.34), bodyMat);
         group.add(bodyMain);
-        const lensMat = new THREE.MeshStandardMaterial({ color: 0xaaccff, metalness: 0.95, emissive: 0x2255aa, emissiveIntensity: 0.22 });
+        const lensMat = new THREE.MeshStandardMaterial({ color: 0xaaddff, metalness: 0.9, emissive: 0x2266cc, emissiveIntensity: 0.2 });
         const leftLens = new THREE.Mesh(new THREE.SphereGeometry(0.41, 48, 48), lensMat);
         leftLens.position.set(-0.47, 0.09, 0.71);
         group.add(leftLens);
         const rightLens = new THREE.Mesh(new THREE.SphereGeometry(0.41, 48, 48), lensMat);
         rightLens.position.set(0.47, 0.09, 0.71);
         group.add(rightLens);
-        const strapMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, metalness: 0.25, roughness: 0.6 });
+        const strapMat = new THREE.MeshStandardMaterial({ color: 0x3a3a4a, metalness: 0.3, roughness: 0.5 });
         const strap = new THREE.Mesh(new THREE.BoxGeometry(1.48, 0.19, 0.3), strapMat);
         strap.position.set(0, 0.14, -0.66);
         group.add(strap);
@@ -506,20 +497,23 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.6 : 2.0));
         renderer.setClearColor(0x000000, 0);
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.28;
+        renderer.toneMappingExposure = 1.35;
         container.appendChild(renderer.domElement);
         
-        const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 1.7 : 1.6);
+        const ambientLight = new THREE.AmbientLight(0x8877aa, 1.2);
         scene.add(ambientLight);
-        const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.7);
-        dirLight1.position.set(3.0, 3.0, 2.8);
+        const dirLight1 = new THREE.DirectionalLight(0xfff5e0, 1.5);
+        dirLight1.position.set(3.5, 4.0, 2.5);
         scene.add(dirLight1);
-        const dirLight2 = new THREE.DirectionalLight(0xcceeff, 0.8);
-        dirLight2.position.set(-2.4, 1.6, 2.5);
+        const dirLight2 = new THREE.DirectionalLight(0xcceeff, 0.9);
+        dirLight2.position.set(-2.8, 2.0, 3.0);
         scene.add(dirLight2);
-        const fillLight = new THREE.PointLight(0x9a66ff, 0.65);
-        fillLight.position.set(1.0, 0.8, 2.0);
+        const fillLight = new THREE.PointLight(0xaa88ff, 0.7);
+        fillLight.position.set(1.2, 0.8, 2.2);
         scene.add(fillLight);
+        const backLight = new THREE.PointLight(0x7744cc, 0.5);
+        backLight.position.set(0, 0.5, -2.5);
+        scene.add(backLight);
         
         clock = new THREE.Clock();
         updateResponsive();
@@ -532,7 +526,10 @@
                 currentModel.traverse((node) => {
                     if (node.isMesh) {
                         node.castShadow = true;
-                        if (node.material) node.material.metalness = node.material.metalness || 0.65;
+                        if (node.material) {
+                            node.material.metalness = node.material.metalness || 0.7;
+                            if (node.material.emissiveIntensity) node.material.emissiveIntensity = 0.12;
+                        }
                     }
                 });
                 const box = new THREE.Box3().setFromObject(currentModel);
@@ -613,7 +610,6 @@
         initThree();
     }
     
-    // Event binding
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
