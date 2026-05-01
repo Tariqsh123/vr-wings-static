@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <span class="dropbtn" onclick="toggleDropdown()">Our Services ▼</span>
+                    <div class="dropdown-content" id="dropdown">
+                        <a href="#">AR — Augmented Reality</a>
+                        <a href="#">VR — Virtual Reality</a>
+                        <a href="#">MR — Mixed Reality</a>
+                        <a href="#">XR — Extended Reality</a>
+                        <a href="#">VR360 — 360° Virtual Reality</a>
+                        <a href="#">VR Simulation</a>
+                        <a href="#">Copilot — AI Assistant</a>
+                    </div>
+                </div>
+                <a href="#">Pricing</a>
+                <a href="#">Tools & Technologies</a>
+                <a href="blog.html">Blogs</a>
+                <a href="#">About</a>
+                <a href="schedule-demo.html">Schedule Demo</a>
+                <a href="contact-us.html" class="contact-btn">Contact Us</a>
+            </div>
+            <div class="menu-btn" onclick="openMenu()">☰</div>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">✕</div>
+        <h2>Our Services</h2>
+        <a href="#">AR — Augmented Reality</a>
+        <a href="#">VR — Virtual Reality</a>
+        <a href="#">MR — Mixed Reality</a>
+        <a href="#">XR — Extended Reality</a>
+        <a href="#">VR360 — 360° Virtual Reality</a>
+        <a href="#">VR Simulation</a>
+        <a href="#">AI Copilot</a>
+        <hr style="margin:20px 0;">
+        <a href="#">Pricing</a>
+        <a href="#">Tools & Technologies</a>
+        <a href="blog.html">Blogs</a>
+        <a href="#">About</a>
+        <a href="schedule-demo.html">Schedule Demo</a>
+        <a href="contact-us.html" style="background:#000;padding:10px 15px;border-radius:20px;text-align:center;">Contact Us</a>
+    </div>
+
+    <script>
+        let dropdown = document.getElementById("dropdown");
+        let mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleDropdown() {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest(".dropdown")) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        function openMenu() {
+            mobileMenu.classList.add("show");
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove("show");
+        }
+    </script>
+
+    <!-- Hero Section -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+            }
+        }
+    </script>
+<div class="vr-section" id="vrSection">
+    <div class="bg-gradient-overlay" id="bgGradient"></div>
+    <canvas id="smoky-canvas"></canvas>
+    <div class="video-overlay" id="videoOverlay">
+        <video id="heroVideo" loop muted playsinline>
+            <source src="./video.webm" type="video/mp4">
+        </video>
+        <div class="video-gradient"></div>
+    </div>
+    <div id="canvas-container"></div>
+    <div class="hero-text" id="heroText">
+        <h1 id="mainHeading">VR Wing delivers cutting-edge AR, VR, XR, VR360, and AI-powered simulation solutions</h1>
+        <button id="ctaButton">VR Wings Nurse Training →</button>
+        <div class="progress-bar-container" id="progressBarContainer">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="scroll-hint" id="scrollHint">
+            <span>SCROLL</span>
+            <div class="scroll-icon"><div class="scroll-dot"></div></div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+    // --- DOM ---
+    const container = document.getElementById('canvas-container');
+    const bgGradient = document.getElementById('bgGradient');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const heroVideo = document.getElementById('heroVideo');
+    const heroTextDiv = document.getElementById('heroText');
+    const mainHeading = document.getElementById('mainHeading');
+    const ctaButton = document.getElementById('ctaButton');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressFill = document.getElementById('progressFill');
+    const scrollHintEl = document.getElementById('scrollHint');
+    const smokyCanvas = document.getElementById('smoky-canvas');
+
+    // --- STATE ---
+    let isVideoVisible = false;
+    let isModelVisible = true;
+    let isMobile = false;
+    let windowWidth = window.innerWidth;
+    let isReversing = false;
+    let touchStartY = 0;
+    let lastTouchTime = 0;
+    
+    // 3D globals
+    let scene, camera, renderer, currentModel = null;
+    let clock;
+    let initialScaleVal = 2.65;
+    let currentScale = 2.65;
+    let targetRotation = { x: 0, y: 0, z: 0 };
+    let smoothRotation = { x: 0, y: 0, z: 0 };
+    let smoothPosition = { x: 0, y: 0, z: 0 };
+    let videoTriggered = false;
+    
+    // PROGRESS: direct mapping from scroll delta (smooth bidirectional)
+    let progress = 0;        // 0 to 1
+    let targetProgress = 0;
+    
+    // no auto transition except scroll-driven
+    let animationFrameId = null;
+    
+    // --- RESPONSIVE ---
+    function updateResponsive() {
+        windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        isMobile = windowWidth < 768 || (windowWidth < 900 && windowHeight < 800);
+        
+        if (isMobile) {
+            if (windowWidth < 380) initialScaleVal = 1.9;
+            else if (windowWidth < 480) initialScaleVal = 2.2;
+            else initialScaleVal = 2.5;
+        } else {
+            initialScaleVal = windowWidth < 1024 ? 2.85 : 2.68;
+        }
+        
+        if (!isVideoVisible && isModelVisible && currentModel) {
+            currentScale = initialScaleVal;
+            currentModel.scale.set(currentScale, currentScale, currentScale);
+        }
+        
+        if (camera) {
+            if (isMobile) {
+                if (windowWidth < 380) camera.position.set(0.0, -0.08, 5.45);
+                else if (windowWidth < 500) camera.position.set(0.02, -0.14, 5.7);
+                else camera.position.set(0.02, -0.12, 5.8);
+            } else {
+                camera.position.set(-0.38, -0.82, 5.95);
+            }
+            camera.fov = isMobile ? (windowWidth < 380 ? 40 : 39) : 41;
+            camera.aspect = windowWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        }
+    }
+    
+    // UI update based on current progress (direct)
+    function updateUI() {
+        const p = progress;
+        const videoActive = isVideoVisible;
+        
+        // z-index logic
+        if (p > 0.01 && p < 0.99 && !isVideoVisible) {
+            container.classList.add('high-z');
+        } else {
+            container.classList.remove('high-z');
+        }
+        
+        // text color - reduce whitening
+        if (videoActive) {
+            mainHeading.style.color = "#ffffff";
+            mainHeading.style.textShadow = "0 2px 18px rgba(0,0,0,0.8)";
+            ctaButton.style.boxShadow = "0 18px 40px rgba(128, 0, 255, 0.75)";
+        } else {
+            mainHeading.style.color = "#cd9eff";
+            mainHeading.style.textShadow = p > 0.78 ? "0 0 22px rgba(180,130,255,0.6)" : "none";
+            ctaButton.style.boxShadow = p > 0.78 ? "0 20px 48px rgba(200,160,255,0.55)" : "0 10px 30px rgba(128, 0, 255, 0.45)";
+        }
+        
+        const btnTranslate = Math.min(p * 4.5, 16);
+        ctaButton.style.transform = `translateY(${btnTranslate}px)`;
+        
+        // gradient darkness - keep rich
+        if (!isVideoVisible && p < 0.08) {
+            bgGradient.style.opacity = "0.92";
+        } else {
+            bgGradient.style.opacity = videoActive ? "0" : Math.max(1 - p * 2.2, 0.18);
+        }
+        
+        const modelTopPercent = isMobile 
+            ? 0.85 * (1 - Math.min(p * 7.2, 1))
+            : 7.2 * (1 - Math.min(p * 6.5, 1));
+        if (container) {
+            container.style.transform = `translateY(${modelTopPercent}px)`;
+            container.style.opacity = videoActive ? "0" : Math.min(0.9 + p * 0.1, 1);
+        }
+        
+        const textY = p * (isMobile ? -0.28 : -0.98);
+        heroTextDiv.style.transform = `translateY(${textY}px)`;
+        heroTextDiv.style.opacity = videoActive ? "1" : 1 - p * 0.3;
+        
+        if (isModelVisible && p > 0.02 && !isVideoVisible) {
+            progressBarContainer.style.display = "block";
+            progressFill.style.width = `${p * 100}%`;
+        } else {
+            progressBarContainer.style.display = "none";
+        }
+        
+        if (isModelVisible && p < 0.06 && !isVideoVisible) {
+            scrollHintEl.style.opacity = "1";
+        } else {
+            scrollHintEl.style.opacity = "0";
+        }
+        
+        const shouldShowSmoky = (p > 0.74 && !isVideoVisible && isModelVisible);
+        if (shouldShowSmoky) {
+            smokyCanvas.style.display = "block";
+            initSmokyIfNeeded();
+        } else {
+            smokyCanvas.style.display = "none";
+        }
+    }
+    
+    // Video trigger at 42% exactly
+    function checkAndTriggerVideo() {
+        if (!isVideoVisible && progress >= 0.42 && !videoTriggered && isModelVisible) {
+            videoTriggered = true;
+            isVideoVisible = true;
+            isModelVisible = false;
+            videoOverlay.style.display = "block";
+            heroVideo.play().catch(e => console.log("video play", e));
+            document.body.classList.remove('locked');
+            if (currentModel) currentModel.visible = false;
+            container.style.opacity = "0";
+            container.classList.remove('high-z');
+            updateUI();
+        }
+    }
+    
+    // Reverse when user scrolls UP while video is visible, with direct progress mapping
+    function handleVideoReverseIfNeeded(deltaY) {
+        if (!isVideoVisible) return false;
+        // deltaY negative = scroll up
+        if (deltaY < 0 && !isReversing) {
+            // start reversing
+            isReversing = true;
+            videoOverlay.style.opacity = "0";
+            setTimeout(() => {
+                videoOverlay.style.display = "none";
+                videoOverlay.style.opacity = "";
+                heroVideo.pause();
+                heroVideo.currentTime = 0;
+                
+                isVideoVisible = false;
+                isModelVisible = true;
+                if (currentModel) currentModel.visible = true;
+                container.style.opacity = "1";
+                videoTriggered = false;
+                document.body.classList.add('locked');
+                
+                // Keep progress same? but we are going back, set target progress to current *something? user will scroll further up to reduce progress.
+                // But we set reversing flag off and allow scroll to directly impact progress again.
+                isReversing = false;
+                updateUI();
+            }, 280);
+            return true;
+        }
+        return false;
+    }
+    
+    // ----- SCROLL HANDLER (Direct bidirectional mapping) -----
+    let accumulatedDelta = 0;
+    let lastScrollTime = 0;
+    
+    function addProgressFromScroll(deltaY) {
+        if (isVideoVisible) {
+            // if video visible and scrolling up -> reverse trigger handled separately
+            if (deltaY < 0 && !isReversing) {
+                handleVideoReverseIfNeeded(deltaY);
+            }
+            return;
+        }
+        if (isReversing) return;
+        
+        // sensitivity: scroll to progress mapping smoothly
+        let sensitivity = isMobile ? 0.0014 : 0.00048;
+        let deltaChange = deltaY * sensitivity;
+        let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
+        
+        if (newProgress !== progress) {
+            progress = newProgress;
+            targetProgress = progress;
+            updateUI();
+            checkAndTriggerVideo();
+            
+            // lock body when progress between 0 and 1
+            if (progress > 0 && progress < 1 && !isVideoVisible) {
+                document.body.classList.add('locked');
+            } else if (progress === 0 && !isVideoVisible) {
+                document.body.classList.remove('locked');
+            }
+        }
+    }
+    
+    // Wheel event
+    function handleWheel(e) {
+        if (isReversing) {
+            e.preventDefault();
+            return;
+        }
+        if (isVideoVisible) {
+            // only handle scrolling up to reverse
+            if (e.deltaY < 0) {
+                e.preventDefault();
+                handleVideoReverseIfNeeded(e.deltaY);
+            }
+            return;
+        }
+        // normal scroll on model
+        if (progress > 0 && progress < 1) {
+            e.preventDefault();
+        }
+        addProgressFromScroll(e.deltaY);
+    }
+    
+    // Touch events for mobile (bidirectional)
+    function handleTouchStart(e) {
+        touchStartY = e.touches[0].clientY;
+    }
+    function handleTouchMove(e) {
+        if (isReversing) {
+            e.preventDefault();
+            return;
+        }
+        const now = Date.now();
+        if (now - lastTouchTime < 16) return;
+        lastTouchTime = now;
+        const currentY = e.touches[0].clientY;
+        let deltaY = touchStartY - currentY; // positive = scroll down
+        touchStartY = currentY;
+        
+        if (isVideoVisible) {
+            if (deltaY < 0) { // swiping up => reverse
+                e.preventDefault();
+                handleVideoReverseIfNeeded(deltaY);
+            }
+            return;
+        }
+        e.preventDefault();
+        let sensitivity = isMobile ? 0.0019 : 0.0006;
+        let deltaChange = deltaY * sensitivity;
+        let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
+        if (newProgress !== progress) {
+            progress = newProgress;
+            targetProgress = progress;
+            updateUI();
+            checkAndTriggerVideo();
+            if (progress > 0 && progress < 1 && !isVideoVisible) {
+                document.body.classList.add('locked');
+            } else if (progress === 0 && !isVideoVisible) {
+                document.body.classList.remove('locked');
+            }
+        }
+    }
+    
+    // fallback to ensure body lock
+    function isAtTopOfPage() { return window.scrollY <= 10; }
+    
+    // --- SMOKY PARTICLES (no whitening, subtle)---
+    let smokyAnimFrame = null;
+    let particlesArray = [];
+    let smokyCtx = null;
+    let smokyWidth = 0, smokyHeight = 0;
+    
+    function initSmokyIfNeeded() {
+        if (!smokyCanvas || smokyCanvas.style.display !== 'block') return;
+        if (!smokyCtx) {
+            smokyCtx = smokyCanvas.getContext('2d');
+            resizeSmokyCanvas();
+            initParticles();
+            startSmokyAnimation();
+            window.addEventListener('resize', resizeSmokyCanvas);
+        }
+    }
+    function resizeSmokyCanvas() {
+        if (!smokyCanvas) return;
+        smokyWidth = window.innerWidth;
+        smokyHeight = window.innerHeight;
+        smokyCanvas.width = smokyWidth;
+        smokyCanvas.height = smokyHeight;
+        if (particlesArray.length > 0) initParticles();
+    }
+    function initParticles() {
+        particlesArray = [];
+        const count = Math.min(55, Math.floor(smokyWidth / 24));
+        for (let i = 0; i < count; i++) {
+            particlesArray.push({
+                x: Math.random() * smokyWidth,
+                y: Math.random() * smokyHeight,
+                radius: 50 + Math.random() * 100,
+                speedX: (Math.random() - 0.5) * 0.18,
+                speedY: (Math.random() - 0.5) * 0.08,
+                opacity: 0.06 + Math.random() * 0.16,
+                blur: 20 + Math.random() * 35,
+            });
+        }
+    }
+    function startSmokyAnimation() {
+        if (smokyAnimFrame) cancelAnimationFrame(smokyAnimFrame);
+        function animateSmoky() {
+            if (!smokyCtx || smokyCanvas.style.display !== 'block') return;
+            smokyCtx.clearRect(0, 0, smokyWidth, smokyHeight);
+            const grad = smokyCtx.createRadialGradient(smokyWidth*0.7, smokyHeight*0.3, 30, smokyWidth*0.75, smokyHeight*0.33, smokyWidth);
+            grad.addColorStop(0, 'rgba(180,130,255,0.08)');
+            grad.addColorStop(0.6, 'rgba(100,70,180,0.03)');
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+            smokyCtx.fillStyle = grad;
+            smokyCtx.fillRect(0, 0, smokyWidth, smokyHeight);
+            particlesArray.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < -p.radius) p.x = smokyWidth + p.radius;
+                if (p.x > smokyWidth + p.radius) p.x = -p.radius;
+                if (p.y < -p.radius) p.y = smokyHeight + p.radius;
+                if (p.y > smokyHeight + p.radius) p.y = -p.radius;
+                const grd = smokyCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+                grd.addColorStop(0, `rgba(210,180,255,${p.opacity * 0.7})`);
+                grd.addColorStop(0.8, `rgba(140,100,200,${p.opacity * 0.2})`);
+                smokyCtx.save();
+                smokyCtx.filter = `blur(${p.blur}px)`;
+                smokyCtx.fillStyle = grd;
+                smokyCtx.beginPath();
+                smokyCtx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
+                smokyCtx.fill();
+                smokyCtx.restore();
+            });
+            smokyCtx.globalCompositeOperation = 'lighter';
+            smokyCtx.globalCompositeOperation = 'source-over';
+            smokyAnimFrame = requestAnimationFrame(animateSmoky);
+        }
+        animateSmoky();
+    }
+    
+    // --- 3D: LOAD vr-headset.glb ---
+    function createFallbackModel() {
+        const group = new THREE.Group();
+        const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe8e2ff, metalness: 0.7, roughness: 0.18, emissive: 0x1f0038, emissiveIntensity: 0.2 });
+        const bodyMain = new THREE.Mesh(new THREE.BoxGeometry(1.26, 0.6, 1.34), bodyMat);
+        group.add(bodyMain);
+        const lensMat = new THREE.MeshStandardMaterial({ color: 0xaaccff, metalness: 0.95, emissive: 0x2255aa, emissiveIntensity: 0.22 });
+        const leftLens = new THREE.Mesh(new THREE.SphereGeometry(0.41, 48, 48), lensMat);
+        leftLens.position.set(-0.47, 0.09, 0.71);
+        group.add(leftLens);
+        const rightLens = new THREE.Mesh(new THREE.SphereGeometry(0.41, 48, 48), lensMat);
+        rightLens.position.set(0.47, 0.09, 0.71);
+        group.add(rightLens);
+        const strapMat = new THREE.MeshStandardMaterial({ color: 0x2a2a2a, metalness: 0.25, roughness: 0.6 });
+        const strap = new THREE.Mesh(new THREE.BoxGeometry(1.48, 0.19, 0.3), strapMat);
+        strap.position.set(0, 0.14, -0.66);
+        group.add(strap);
+        return group;
+    }
+    
+    function initThree() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(41, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.6 : 2.0));
+        renderer.setClearColor(0x000000, 0);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.28;
+        container.appendChild(renderer.domElement);
+        
+        const ambientLight = new THREE.AmbientLight(0xffffff, isMobile ? 1.7 : 1.6);
+        scene.add(ambientLight);
+        const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.7);
+        dirLight1.position.set(3.0, 3.0, 2.8);
+        scene.add(dirLight1);
+        const dirLight2 = new THREE.DirectionalLight(0xcceeff, 0.8);
+        dirLight2.position.set(-2.4, 1.6, 2.5);
+        scene.add(dirLight2);
+        const fillLight = new THREE.PointLight(0x9a66ff, 0.65);
+        fillLight.position.set(1.0, 0.8, 2.0);
+        scene.add(fillLight);
+        
+        clock = new THREE.Clock();
+        updateResponsive();
+        
+        const loader = new GLTFLoader();
+        loader.load('./vr-headset.glb', 
+            (gltf) => {
+                console.log('✅ vr-headset.glb loaded');
+                currentModel = gltf.scene;
+                currentModel.traverse((node) => {
+                    if (node.isMesh) {
+                        node.castShadow = true;
+                        if (node.material) node.material.metalness = node.material.metalness || 0.65;
+                    }
+                });
+                const box = new THREE.Box3().setFromObject(currentModel);
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scaleFactor = initialScaleVal / maxDim * 0.98;
+                currentModel.scale.set(scaleFactor, scaleFactor, scaleFactor);
+                currentModel.position.set(0, -0.08, 0);
+                scene.add(currentModel);
+                updateResponsive();
+            },
+            undefined,
+            (error) => {
+                console.warn('vr-headset.glb failed, using fallback', error);
+                currentModel = createFallbackModel();
+                scene.add(currentModel);
+                currentModel.position.set(0, 0, 0);
+                currentModel.scale.set(initialScaleVal, initialScaleVal, initialScaleVal);
+                currentScale = initialScaleVal;
+            }
+        );
+        animate3D();
+    }
+    
+    function animate3D() {
+        if (!currentModel) {
+            requestAnimationFrame(animate3D);
+            return;
+        }
+        const delta = Math.min(clock.getDelta(), 0.033);
+        const elapsedTime = performance.now() / 1000;
+        const p = progress;
+        const easedP = 1 - Math.pow(1 - p, 2.5);
+        
+        if (!isVideoVisible && isModelVisible && currentModel && !isReversing) {
+            const dynamicTilt = -0.22 * (1 - easedP);
+            targetRotation.x = dynamicTilt + easedP * Math.PI * 0.14;
+            targetRotation.y = easedP * Math.PI * 0.79 + 0.29;
+            const idleY = Math.sin(elapsedTime * 0.07) * 0.0035;
+            const idleX = Math.sin(elapsedTime * 0.05) * 0.002;
+            const smoothFactor = Math.min(delta * 5, 0.12);
+            
+            smoothRotation.x += (targetRotation.x + idleX - smoothRotation.x) * smoothFactor;
+            smoothRotation.y += (targetRotation.y + idleY - smoothRotation.y) * smoothFactor;
+            currentModel.rotation.x = smoothRotation.x;
+            currentModel.rotation.y = smoothRotation.y;
+            currentModel.rotation.z = Math.sin(elapsedTime * 0.07) * 0.0012;
+            
+            let targetX = isMobile ? -0.04 : -0.11;
+            let targetY = isMobile ? -0.23 : -0.36;
+            targetY += easedP * 0.06;
+            smoothPosition.x += (targetX + Math.sin(elapsedTime * 0.08) * 0.003 - smoothPosition.x) * smoothFactor;
+            smoothPosition.y += (targetY + Math.sin(elapsedTime * 0.1) * 0.003 - smoothPosition.y) * smoothFactor;
+            currentModel.position.set(smoothPosition.x, smoothPosition.y, smoothPosition.z);
+            
+            const targetScaleVal = isMobile 
+                ? initialScaleVal + easedP * (178 - initialScaleVal)
+                : initialScaleVal + easedP * (390 - initialScaleVal);
+            currentScale += (targetScaleVal - currentScale) * smoothFactor * 0.6;
+            if (currentModel) currentModel.scale.set(currentScale, currentScale, currentScale);
+        }
+        
+        if (camera) {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        }
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate3D);
+    }
+    
+    function initialize() {
+        updateResponsive();
+        document.body.classList.add('locked');
+        progress = 0;
+        targetProgress = 0;
+        updateUI();
+        initThree();
+    }
+    
+    // Event binding
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    
+    ctaButton.addEventListener('click', () => {
+        if (!isVideoVisible && !isReversing && progress < 0.9) {
+            let targetVal = Math.min(progress + 0.09, 0.42);
+            let step = () => {
+                if (progress >= targetVal || isVideoVisible) return;
+                progress = Math.min(progress + 0.007, targetVal);
+                targetProgress = progress;
+                updateUI();
+                checkAndTriggerVideo();
+                if (progress < targetVal) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+    });
+    
+    initialize();
+</script>
+
+
+<section id="service-section" class="service-section">
+
+  <div class="service-container">
+
+    <div class="service-header">
+      <h2 class="service-title">Our Services</h2>
+      <p class="service-subtitle">Cutting-edge immersive and AI solutions</p>
+    </div>
+
+    <div class="service-grid">
+
+  <!-- AR -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine">
+      <div class="service-shine-inner"></div>
+    </div>
+
+    <div class="service-content">
+      <div class="service-bg-hover"></div>
+      <div class="service-glow"></div>
+
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-regular fa-eye"></i></div>
+        <h3 class="service-heading">AR — Augmented Reality</h3>
+      </div>
+
+      <p class="service-desc">Augmented Reality solutions...</p>
+
+      <a href="/services/ar" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- VR -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-vr-cardboard"></i></div>
+        <h3 class="service-heading">VR — Virtual Reality</h3>
+      </div>
+
+      <p class="service-desc">Immersive Virtual Reality...</p>
+      <a href="/services/vr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- MR -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-cube"></i></div>
+        <h3 class="service-heading">MR — Mixed Reality</h3>
+      </div>
+
+      <p class="service-desc">Mixed Reality applications...</p>
+      <a href="/services/mr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- XR -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3 class="service-heading">XR — Extended Reality</h3>
+      </div>
+
+      <p class="service-desc">Extended Reality solutions...</p>
+      <a href="/services/xr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- VR360 -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-film"></i></div>
+        <h3 class="service-heading">VR360 — 360° Virtual Reality</h3>
+      </div>
+
+      <p class="service-desc">360° VR experiences...</p>
+      <a href="/services/vr360" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- VR Simulation -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
+        <h3 class="service-heading">VR Simulation</h3>
+      </div>
+
+      <p class="service-desc">High-fidelity VR simulations...</p>
+      <a href="/services/vr-simulation" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- AI Copilot -->
+  <div class="service-card">
+    <div class="service-gradient-border"></div>
+    <div class="service-corner service-tl"></div>
+    <div class="service-corner service-tr"></div>
+    <div class="service-corner service-bl"></div>
+    <div class="service-corner service-br"></div>
+
+    <div class="service-shine"><div class="service-shine-inner"></div></div>
+
+    <div class="service-content">
+      <div class="service-top">
+        <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3 class="service-heading">AI Copilot</h3>
+      </div>
+
+      <p class="service-desc">AI-powered copilot systems...</p>
+      <a href="/services/copilot" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+</section>
+<script>
+  document.querySelectorAll(".service-card").forEach(card => {
+  const shine = card.querySelector(".service-shine-inner");
+
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    shine.style.transform = `translate(${x - 50}%, ${y - 50}%) rotate(45deg)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    shine.style.transform = `translate(-50%, -50%) rotate(45deg)`;
+  });
+});
+</script>
+
+
+<section class="stronger-section">
+
+  <div class="container">
+
+    <!-- HEADING (bigger) -->
+    <h2 class="section-heading">
+      Stronger teams. Safer patients.
+    </h2>
+
+    <!-- SECTION 1 (LEFT IMAGE) -->
+    <div class="section-row" id="stronger-row-reverse">
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68daae4578ce71339240122e_Built%20for%20graphic-p-800.jpg" alt="Healthcare systems">
+
+      <div class="text-box">
+        <h3>Built with healthcare systems in mind</h3>
+        <p>
+          Developed in collaboration with nurses, nurse leaders and system administrators nationwide,
+          our scenarios are designed to empower systems to deliver high-quality care.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 (RIGHT IMAGE) -->
+    <div class="section-row reverse">
+      <div class="text-box">
+        <h3>Learn, assess, collaborate</h3>
+        <p>
+          The VR Wings offers a unique way to train on one platform. Learners can follow self-guided
+          scenarios, independently assess their skills competence, and collaborate with educators and peers.
+        </p>
+      </div>
+
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9a3321cd6352b16667fc1_Built%20for%20nursing%20graphic.jpg" alt="VR Training">
+    </div>
+
+    <!-- SECTION 3 (LEFT IMAGE AGAIN) -->
+    <div class="section-row" id="stronger-row-reverse">
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d99780ee8e329fe016fbc5_Debrief%20feature%20graphic%20plain.jpg" alt="Standards into action">
+
+      <div class="text-box">
+        <h3>Turning standards into action</h3>
+        <p>
+          Our Domains of Excellence methodology organizes critical quality and accreditation standards
+          into an easy-to-use framework, helping hospitals see what matters and act with confidence.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="modules-section">
+
+
+    <!-- HEADING -->
+    <div class="heading-box">
+      <h2>Our Most In-Demand Modules</h2>
+
+      <div class="line"></div>
+
+      <p>
+        We deliver immersive, high-impact simulations designed to train, engage,
+        and transform real-world performance across industries.
+      </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="modules-grid">
+
+      <!-- CARD 1 -->
+      <a href="surgicaltrainingmodule.html" class="module-card">
+        <img src="https://www.htfmarketintelligence.com/uploads/reports/16722299241678.webp" alt="">
+        <div class="overlay"></div>
+        <h3>VR Surgical Training Simulation</h3>
+      </a>
+
+      <!-- CARD 2 -->
+      <a href="firesafetymodule.html" class="module-card">
+        <img src="https://itra.com.au/wp-content/uploads/2019/03/vr_fire.jpg" alt="">
+        <div class="overlay"></div>
+        <h3>Industrial Fire Safety Training</h3>
+      </a>
+
+      <!-- CARD 3 -->
+      <a href="droneoperationmodule.html" class="module-card">
+        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1278060/ss_00a41b66228f5a328db44f729d2665b145981c64.1920x1080.jpg" alt="">
+        <div class="overlay"></div>
+        <h3>Drone Operation Simulation</h3>
+      </a>
+
+      <!-- CARD 4 -->
+      <a href="industrialmodule.html" class="module-card">
+        <img src="https://skyreal.tech/wp-content/thumbnails/uploads/2023/06/picture_20201102-184002-1-tt-width-875-height-301-fill-0-crop-0-bgcolor-eeeeee-except_gif-1-post_id-0.png" alt="">
+        <div class="overlay"></div>
+        <h3>Industrial Manufacturing</h3>
+      </a>
+
+      <!-- CARD 5 -->
+      <a href="pilottrainingmodule.html" class="module-card">
+        <img src="https://defence-industry.eu/wp-content/uploads/2023/09/Finland-purchases-Hawk-Full-Mission-Simulator-from-Patria-01.jpg" alt="">
+        <div class="overlay"></div>
+        <h3>Aviation Pilot Training Simulation</h3>
+      </a>
+
+      <!-- CARD 6 -->
+      <a href="constructionsitemodule.html" class="module-card">
+        <img src="https://cdn2.unrealengine.com/Unreal+Engine%2Fspotlights%2Finteractive-vr-training-improves-construction-site-safety-and-roi%2FSpotlight_Twinsite_blog_feature_img_-1920x960-c8d4d53e06ae882b17d3ea816f05a32aea595ea5.jpg" alt="">
+        <div class="overlay"></div>
+        <h3>Construction Site Planning</h3>
+      </a>
+
+    </div>
+
+</section>
+
+
+
+
+
+<section class="badge-section">
+
+  <!-- HEADING -->
+  <div class="badge-heading">
+    <h2>What Our Clients Say About The VR Wings</h2>
+  </div>
+
+  <!-- CONTAINER -->
+  <div class="badge-container">
+
+    <div class="badge-inner">
+
+      <!-- Badge 1 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/glassdoor.png" alt="Glassdoor">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Glassdoor</b></span>
+      </a>
+
+      <!-- Badge 2 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Capterra.png" alt="Capterra">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Capterra</b></span>
+      </a>
+
+      <!-- Badge 3 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Clutch.png" alt="Clutch">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Clutch</b></span>
+      </a>
+
+      <!-- Badge 4 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/G2.png" alt="G2">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>G2 Crowd</b></span>
+      </a>
+
+      <!-- Badge 5 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/SiteJabbar.png" alt="Sitejabbar">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Sitejabbar</b></span>
+      </a>
+
+      <!-- Badge 6 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Goodfirms.png" alt="GoodFirms">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>GoodFirms</b></span>
+      </a>
+
+      <!-- Badge 7 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/designrush.png" alt="Design Rush">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Design Rush</b></span>
+      </a>
+
+      <!-- Badge 8 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/TrustPilot.png" alt="Trust Pilot">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Trust Pilot</b></span>
+      </a>
+
+      <!-- Badge 9 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Facebook-Review.png" alt="Facebook">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Facebook</b></span>
+      </a>
+
+      <!-- Badge 10 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/google-reviews.png" alt="Google">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Google</b></span>
+      </a>
+
+      <!-- Badge 11 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Sort List.png" alt="Sortlist">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>Sortlist</b></span>
+      </a>
+
+      <!-- Badge 12 -->
+      <a href="#" class="badge-box">
+        <img src="https://thebravenext.com/images/Linkeding-Badge.png" alt="LinkedIn">
+        <p>Read Our Reviews On</p>
+        <span>Recognized as Top Software Developers by <b>LinkedIn</b></span>
+      </a>
+
+    </div>
+
+    <!-- BUTTON -->
+    <a href="testimonials.html" class="review-btn">Read More Reviews</a>
+
+  </div>
+
+</section>
+
+
+<section class="cta-section">
+
+  <!-- BACKGROUND BLURS -->
+  <div class="blob purple"></div>
+  <div class="blob pink"></div>
+
+  <!-- FLOATING IMAGES -->
+  <img class="headset" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d977f1c2950a7075aed961_8dccdbc99cae70c9067bdbd34262fbb4_Quest%20Headset-p-500.avif" alt="VR Headset">
+
+  <img class="controller front" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9780703992805e91bf8e9_c7c6966debbfde812931b8e1056b37c3_Front%20Controller.avif" alt="Controller">
+
+  <img class="controller back" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d978173585577e903ea326_4b2588e5bc103e0c5bb342b8cf4c8ac0_Back%20Controller.avif" alt="Controller">
+
+  <!-- CONTENT -->
+  <div class="cta-content">
+    <h2>Purposeful Practice.<br>Confident Care.</h2>
+
+    <button class="cta-btn">
+      Speak to our team →
+    </button>
+
+    <p>Join the leading healthcare institutions using VR Wings</p>
+  </div>
+
+</section>
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="images/logo.webp" alt="Logo" />
+                <h2>Get updates.</h2>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Submit</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="footer-description">
+                    Elevating collaboration to new dimensions—where VR, AR, MR and AI unite to shape smarter, more immersive experiences.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li>AR — Augmented Reality</li>
+                        <li>VR — Virtual Reality</li>
+                        <li>MR — Mixed Reality</li>
+                        <li>XR — Extended Reality</li>
+                        <li>VR360 — 360° Virtual Reality</li>
+                        <li>VR Simulation</li>
+                        <li>Copilot — AI Assistant</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Tools & Technologies</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="schedule-demo.html">Schedule Demo</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        +44 7463 151997
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        info@vrwings.com
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        20 Wenlock Road, London, N1 7GU
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            ©2026 VR Wings. All rights reserved.
+        </div>
+    </footer>
+    
+</body>
+</html>

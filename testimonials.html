@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <!-- FONT AWESOME CDN -->
+ <!-- Swiper JS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <span class="dropbtn" onclick="toggleDropdown()">Our Services ▼</span>
+                    <div class="dropdown-content" id="dropdown">
+                        <a href="#">AR — Augmented Reality</a>
+                        <a href="#">VR — Virtual Reality</a>
+                        <a href="#">MR — Mixed Reality</a>
+                        <a href="#">XR — Extended Reality</a>
+                        <a href="#">VR360 — 360° Virtual Reality</a>
+                        <a href="#">VR Simulation</a>
+                        <a href="#">Copilot — AI Assistant</a>
+                    </div>
+                </div>
+                <a href="#">Pricing</a>
+                <a href="#">Tools & Technologies</a>
+                <a href="blog.html">Blogs</a>
+                <a href="#">About</a>
+                <a href="schedule-demo.html">Schedule Demo</a>
+                <a href="contact-us.html" class="contact-btn">Contact Us</a>
+            </div>
+            <div class="menu-btn" onclick="openMenu()">☰</div>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">✕</div>
+        <h2>Our Services</h2>
+        <a href="#">AR — Augmented Reality</a>
+        <a href="#">VR — Virtual Reality</a>
+        <a href="#">MR — Mixed Reality</a>
+        <a href="#">XR — Extended Reality</a>
+        <a href="#">VR360 — 360° Virtual Reality</a>
+        <a href="#">VR Simulation</a>
+        <a href="#">AI Copilot</a>
+        <hr style="margin:20px 0;">
+        <a href="#">Pricing</a>
+        <a href="#">Tools & Technologies</a>
+        <a href="blog.html">Blogs</a>
+        <a href="#">About</a>
+        <a href="schedule-demo.html">Schedule Demo</a>
+        <a href="contact-us.html" style="background:#000;padding:10px 15px;border-radius:20px;text-align:center;">Contact Us</a>
+    </div>
+
+    <script>
+        let dropdown = document.getElementById("dropdown");
+        let mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleDropdown() {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest(".dropdown")) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        function openMenu() {
+            mobileMenu.classList.add("show");
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove("show");
+        }
+    </script>
+
+      <!-- Work -->
+<!-- header -->
+ <div id="testimonial-main-header">
+    <div id="testimonial-header-inner">
+        <h1>Testimonials</h1>
+        <p>We settle for a 100% client satisfaction only! Our clients love working with us because we treat their projects like our own</p>
+    </div>
+ </div>
+<!-- header End-->
+
+ <!-- Clutch Review -->
+ <div id="Clutch-review-main-contaier">
+    <div id="Clutch-review-inner-contaier">
+      <div id="Clutch-review-top-contaier">
+        <h2>Clutch Reviews</h2>
+      </div>
+      <div id="Clutch-review-bottom-contaier">
+        <div class="Clutch-swiper-container swiper">
+          <div class="Clutch-swiper-wrapper swiper-wrapper">
+          <!-- 1 -->
+<div class="Clutch-swiper-slide swiper-slide">
+    <div class="Clutch-swiper-slide-top">
+        <p>5.0</p>
+        <img src="/Images/Yellow 5 Start.png" alt="">
+    </div>
+    <div class="Clutch-swiper-slide-medium">
+        <p>I had a great experience with The Brave Next.</p>
+    </div>
+    <div class="Clutch-swiper-slide-bottom">
+        <p>Posted on Clutch</p>
+    </div>
+</div>
+
+<!-- 2 -->
+<div class="Clutch-swiper-slide swiper-slide">
+    <div class="Clutch-swiper-slide-top">
+        <p>5.0</p>
+        <img src="/Images/Yellow 5 Start.png" alt="">
+    </div>
+    <div class="Clutch-swiper-slide-medium">
+        <p>Exceptional service and timely delivery. Highly recommend!</p>
+    </div>
+    <div class="Clutch-swiper-slide-bottom">
+        <p>Posted on Clutch</p>
+    </div>
+</div>
+
+<!-- 3 -->
+<div class="Clutch-swiper-slide swiper-slide">
+    <div class="Clutch-swiper-slide-top">
+        <p>5.0</p>
+        <img src="/Images/Yellow 5 Start.png" alt="">
+    </div>
+    <div class="Clutch-swiper-slide-medium">
+        <p>They truly understand client needs and deliver with perfection.</p>
+    </div>
+    <div class="Clutch-swiper-slide-bottom">
+        <p>Posted on Clutch</p>
+    </div>
+</div>
+
+<!-- 4 -->
+<div class="Clutch-swiper-slide swiper-slide">
+    <div class="Clutch-swiper-slide-top">
+        <p>5.0</p>
+        <img src="/Images/Yellow 5 Start.png" alt="">
+    </div>
+    <div class="Clutch-swiper-slide-medium">
+        <p>Creative, professional, and always ahead of the curve!</p>
+    </div>
+    <div class="Clutch-swiper-slide-bottom">
+        <p>Posted on Clutch</p>
+    </div>
+</div>
+
+<!-- 5 -->
+<div class="Clutch-swiper-slide swiper-slide">
+    <div class="Clutch-swiper-slide-top">
+        <p>5.0</p>
+        <img src="/Images/Yellow 5 Start.png" alt="">
+    </div>
+    <div class="Clutch-swiper-slide-medium">
+        <p>Working with them has been an absolute pleasure from start to finish.</p>
+    </div>
+    <div class="Clutch-swiper-slide-bottom">
+        <p>Posted on Clutch</p>
+    </div>
+</div>
+<!-- end -->
+        </div>
+          <!-- Navigation buttons -->
+          <div class="Clutch-swiper-button-prev swiper-button-prev"></div>
+          <div class="Clutch-swiper-button-next swiper-button-next"></div>
+          <!-- Pagination -->
+          <div class="Clutch-swiper-pagination swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const clutchSwiper = new Swiper('.Clutch-swiper-container', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.Clutch-swiper-button-next',
+        prevEl: '.Clutch-swiper-button-prev',
+      },
+      pagination: {
+        el: '.Clutch-swiper-pagination',
+        clickable: true,
+      },
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+    });
+  </script>
+ <!-- Clutch Review End -->
+
+<!-- G2 Review -->
+<div id="g2-review-main-container">
+  <div id="g2-review-inner-container">
+    <div id="g2-review-top-container">
+      <h2>G2 Reviews</h2>
+    </div>
+    <div id="g2-review-bottom-container">
+      <div class="g2-swiper-container swiper">
+        <div class="g2-swiper-wrapper swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="g2-swiper-slide swiper-slide">
+            <div class="g2-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="g2-swiper-slide-medium">
+              <p>Amazing workplace culture and great leadership that truly cares.</p>
+            </div>
+            <div class="g2-swiper-slide-bottom">
+              <p>Posted on G2</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="g2-swiper-slide swiper-slide">
+            <div class="g2-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="g2-swiper-slide-medium">
+              <p>Supportive environment with endless learning and growth opportunities.</p>
+            </div>
+            <div class="g2-swiper-slide-bottom">
+              <p>Posted on G2</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="g2-swiper-slide swiper-slide">
+            <div class="g2-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="g2-swiper-slide-medium">
+              <p>Leadership is approachable, and your ideas are always welcomed.</p>
+            </div>
+            <div class="g2-swiper-slide-bottom">
+              <p>Posted on G2</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="g2-swiper-slide swiper-slide">
+            <div class="g2-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="g2-swiper-slide-medium">
+              <p>The team values innovation, creativity, and collaborative thinking.</p>
+            </div>
+            <div class="g2-swiper-slide-bottom">
+              <p>Posted on G2</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="g2-swiper-slide swiper-slide">
+            <div class="g2-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="g2-swiper-slide-medium">
+              <p>Great balance of work and life, with respect for employee wellbeing.</p>
+            </div>
+            <div class="g2-swiper-slide-bottom">
+              <p>Posted on G2</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="g2-swiper-button-prev swiper-button-prev"></div>
+        <div class="g2-swiper-button-next swiper-button-next"></div>
+        
+        <!-- Pagination -->
+        <div class="g2-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Swiper JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const g2Swiper = new Swiper('.g2-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.g2-swiper-button-next',
+      prevEl: '.g2-swiper-button-prev',
+    },
+    pagination: {
+      el: '.g2-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- G2 Review End -->
+
+
+
+<!-- Sitejabbar Review -->
+<div id="Sitejabbar-review-main-contaier">
+  <div id="Sitejabbar-review-inner-contaier">
+    <div id="Sitejabbar-review-top-contaier">
+      <h2>Sitejabbar Reviews</h2>
+    </div>
+    <div id="Sitejabbar-review-bottom-contaier">
+      <div class="Sitejabbar-swiper-container swiper">
+        <div class="Sitejabbar-swiper-wrapper swiper-wrapper">
+         <!-- 1 -->
+<div class="Sitejabbar-swiper-slide swiper-slide">
+  <div class="Sitejabbar-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="">
+  </div>
+  <div class="Sitejabbar-swiper-slide-medium">
+    <p>Outstanding service! The team exceeded all our expectations.</p>
+  </div>
+  <div class="Sitejabbar-swiper-slide-bottom">
+    <p>Posted on SiteJabbar</p>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="Sitejabbar-swiper-slide swiper-slide">
+  <div class="Sitejabbar-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="">
+  </div>
+  <div class="Sitejabbar-swiper-slide-medium">
+    <p>Highly professional and creative team. I loved the final result!</p>
+  </div>
+  <div class="Sitejabbar-swiper-slide-bottom">
+    <p>Posted on SiteJabbar</p>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="Sitejabbar-swiper-slide swiper-slide">
+  <div class="Sitejabbar-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="">
+  </div>
+  <div class="Sitejabbar-swiper-slide-medium">
+    <p>Fast, reliable, and always available when I needed support.</p>
+  </div>
+  <div class="Sitejabbar-swiper-slide-bottom">
+    <p>Posted on SiteJabbar</p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="Sitejabbar-swiper-slide swiper-slide">
+  <div class="Sitejabbar-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="">
+  </div>
+  <div class="Sitejabbar-swiper-slide-medium">
+    <p>The Brave Next transformed our ideas into a stunning reality.</p>
+  </div>
+  <div class="Sitejabbar-swiper-slide-bottom">
+    <p>Posted on SiteJabbar</p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="Sitejabbar-swiper-slide swiper-slide">
+  <div class="Sitejabbar-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="">
+  </div>
+  <div class="Sitejabbar-swiper-slide-medium">
+    <p>A smooth experience from start to finish. Highly recommend!</p>
+  </div>
+  <div class="Sitejabbar-swiper-slide-bottom">
+    <p>Posted on SiteJabbar</p>
+  </div>
+</div>
+
+          <!-- end -->
+        </div>
+        <!-- Navigation buttons -->
+        <div class="Sitejabbar-swiper-button-prev swiper-button-prev"></div>
+        <div class="Sitejabbar-swiper-button-next swiper-button-next"></div>
+        <!-- Pagination -->
+        <div class="Sitejabbar-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const sitejabbarSwiper = new Swiper('.Sitejabbar-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.Sitejabbar-swiper-button-next',
+      prevEl: '.Sitejabbar-swiper-button-prev',
+    },
+    pagination: {
+      el: '.Sitejabbar-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- Sitejabbar Review End -->
+
+
+<!-- Trustpilot Review -->
+<div id="trustpilot-review-main-container">
+  <div id="trustpilot-review-inner-container">
+    <div id="trustpilot-review-top-container">
+      <h2>Trustpilot Reviews</h2>
+    </div>
+    <div id="trustpilot-review-bottom-container">
+      <div class="trustpilot-swiper-container swiper">
+        <div class="trustpilot-swiper-wrapper swiper-wrapper">
+         <!-- 1 -->
+<div class="trustpilot-swiper-slide swiper-slide">
+  <div class="trustpilot-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+  </div>
+  <div class="trustpilot-swiper-slide-medium">
+    <p>Absolutely flawless experience — their creativity and precision are unmatched!</p>
+  </div>
+  <div class="trustpilot-swiper-slide-bottom">
+    <p>Posted on TrustPilot</p>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="trustpilot-swiper-slide swiper-slide">
+  <div class="trustpilot-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+  </div>
+  <div class="trustpilot-swiper-slide-medium">
+    <p>From concept to delivery, everything was smooth, timely, and on point.</p>
+  </div>
+  <div class="trustpilot-swiper-slide-bottom">
+    <p>Posted on TrustPilot</p>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="trustpilot-swiper-slide swiper-slide">
+  <div class="trustpilot-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+  </div>
+  <div class="trustpilot-swiper-slide-medium">
+    <p>They brought our ideas to life better than we imagined. Truly impressed!</p>
+  </div>
+  <div class="trustpilot-swiper-slide-bottom">
+    <p>Posted on TrustPilot</p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="trustpilot-swiper-slide swiper-slide">
+  <div class="trustpilot-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+  </div>
+  <div class="trustpilot-swiper-slide-medium">
+    <p>Incredible work ethic, strong communication, and beautiful results!</p>
+  </div>
+  <div class="trustpilot-swiper-slide-bottom">
+    <p>Posted on TrustPilot</p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="trustpilot-swiper-slide swiper-slide">
+  <div class="trustpilot-swiper-slide-top">
+    <p>5.0</p>
+    <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+  </div>
+  <div class="trustpilot-swiper-slide-medium">
+    <p>One of the best teams I’ve worked with — reliable, innovative, and fast!</p>
+  </div>
+  <div class="trustpilot-swiper-slide-bottom">
+    <p>Posted on TrustPilot</p>
+  </div>
+</div>
+
+          <!-- end -->
+        </div>
+        <!-- Navigation buttons -->
+        <div class="trustpilot-swiper-button-prev swiper-button-prev"></div>
+        <div class="trustpilot-swiper-button-next swiper-button-next"></div>
+        <!-- Pagination -->
+        <div class="trustpilot-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const trustpilotSwiper = new Swiper('.trustpilot-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.trustpilot-swiper-button-next',
+      prevEl: '.trustpilot-swiper-button-prev',
+    },
+    pagination: {
+      el: '.trustpilot-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- Trustpilot Review End -->
+
+
+<!-- Facebook Review -->
+<div id="facebook-review-main-container">
+  <div id="facebook-review-inner-container">
+    <div id="facebook-review-top-container">
+      <h2>Facebook Reviews</h2>
+    </div>
+    <div id="facebook-review-bottom-container">
+      <div class="facebook-swiper-container swiper">
+        <div class="facebook-swiper-wrapper swiper-wrapper">
+        <!-- Slide 1 -->
+<div class="facebook-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <span>5.0</span>
+    <img src="/Images/Yellow 5 Start.png" alt="" style="height: 50% !important;">
+  </div>
+  <div id="fb-message-container">
+    <p>Absolutely love the professionalism and creativity they bring!</p>
+  </div>
+  <div id="fb-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=60440&format=png&color=228BE6" alt="">
+    <p>Posted on <span> Facebook</span></p>
+  </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="facebook-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <span>5.0</span>
+    <img src="/Images/Yellow 5 Start.png" alt="" style="height: 50% !important;">
+  </div>
+  <div id="fb-message-container">
+    <p>They delivered beyond expectations. Will definitely work with them again!</p>
+  </div>
+  <div id="fb-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=60440&format=png&color=228BE6" alt="">
+    <p>Posted on <span> Facebook</span></p>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="facebook-swiper-slide swiper-slide">
+  <div id="profile-container">
+ <span>5.0</span>
+    <img src="/Images/Yellow 5 Start.png" alt="" style="height: 50% !important;">
+  </div>
+  <div id="fb-message-container">
+    <p>Quick response, friendly team, and a fantastic final product!</p>
+  </div>
+  <div id="fb-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=60440&format=png&color=228BE6" alt="">
+    <p>Posted on <span> Facebook</span></p>
+  </div>
+</div>
+
+<!-- Slide 4 -->
+<div class="facebook-swiper-slide swiper-slide">
+  <div id="profile-container">
+   <span>5.0</span>
+    <img src="/Images/Yellow 5 Start.png" alt="" style="height: 50% !important;">
+  </div>
+  <div id="fb-message-container">
+    <p>Working with them was a smooth and stress-free experience. Highly recommend!</p>
+  </div>
+  <div id="fb-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=60440&format=png&color=228BE6" alt="">
+    <p>Posted on <span> Facebook</span></p>
+  </div>
+</div>
+
+<!-- Slide 5 -->
+<div class="facebook-swiper-slide swiper-slide">
+  <div id="profile-container">
+     <span>5.0</span>
+    <img src="/Images/Yellow 5 Start.png" alt="" style="height: 50% !important;">
+  </div>
+  <div id="fb-message-container">
+    <p>The team truly cares about their clients. Amazing service and results!</p>
+  </div>
+  <div id="fb-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=60440&format=png&color=228BE6" alt="">
+    <p>Posted on <span> Facebook</span></p>
+  </div>
+</div>
+
+      
+          <!-- end -->
+        </div>
+        <!-- Navigation buttons -->
+        <div class="facebook-swiper-button-prev swiper-button-prev"></div>
+        <div class="facebook-swiper-button-next swiper-button-next"></div>
+        <!-- Pagination -->
+        <div class="facebook-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const facebookSwiper = new Swiper('.facebook-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.facebook-swiper-button-next',
+      prevEl: '.facebook-swiper-button-prev',
+    },
+    pagination: {
+      el: '.facebook-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- Facebook Review End -->
+
+<!-- Google Review -->
+<div id="google-review-main-container">
+  <div id="google-review-inner-container">
+    <div id="google-review-top-container">
+      <h2>Google Reviews</h2>
+    </div>
+    <div id="google-review-bottom-container">
+      <div class="google-swiper-container swiper">
+        <div class="google-swiper-wrapper swiper-wrapper">
+        <!-- Slide 1 -->
+<div class="google-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <img src="https://i.pinimg.com/474x/e6/e4/df/e6e4df26ba752161b9fc6a17321fa286.jpg" alt="">
+    <span>Ayaan Qureshi</span>
+  </div>
+  <div id="google-message-container">
+    <p>The Brave Next provided us with a perfect custom solution tailored to our needs.</p>
+  </div>
+  <div id="google-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Logo" style="height: 25px;">
+    <p>Posted on <span> Google</span></p>
+  </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="google-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <img src="https://i.pinimg.com/474x/4f/b2/bb/4fb2bb013cbafae8ef4f9cb7a930ff6c.jpg" alt="">
+    <span>Mariam Shah</span>
+  </div>
+  <div id="google-message-container">
+    <p>Exceptional service and attention to detail. Very impressed with the final results!</p>
+  </div>
+  <div id="google-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Logo" style="height: 25px;">
+    <p>Posted on <span> Google</span></p>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="google-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <img src="https://i.pinimg.com/474x/75/41/85/7541859ff6234c71588b9a597a6d08c5.jpg" alt="">
+    <span>Zayan Khalid</span>
+  </div>
+  <div id="google-message-container">
+    <p>One of the best experiences I’ve had. The team was proactive and professional.</p>
+  </div>
+  <div id="google-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Logo" style="height: 25px;">
+    <p>Posted on <span> Google</span></p>
+  </div>
+</div>
+
+<!-- Slide 4 -->
+<div class="google-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <img src="https://i.pinimg.com/474x/c7/60/70/c760705503fa137c58bcfbf39d1430b5.jpg" alt="">
+    <span>Hira Naveed</span>
+  </div>
+  <div id="google-message-container">
+    <p>They were incredibly responsive and met every deadline. Highly recommended!</p>
+  </div>
+  <div id="google-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Logo" style="height: 25px;">
+    <p>Posted on <span> Google</span></p>
+  </div>
+</div>
+
+<!-- Slide 5 -->
+<div class="google-swiper-slide swiper-slide">
+  <div id="profile-container">
+    <img src="https://i.pinimg.com/474x/6f/f9/e1/6ff9e19d6c3f3909799c6dcb4df087eb.jpg" alt="">
+    <span>Bilal Farooq</span>
+  </div>
+  <div id="google-message-container">
+    <p>The Brave Next team exceeded our expectations — fast, friendly, and focused!</p>
+  </div>
+  <div id="google-bottom-container">
+    <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Logo" style="height: 25px;">
+    <p>Posted on <span> Google</span></p>
+  </div>
+</div>
+
+          <!-- end -->
+        </div>
+        <!-- Navigation buttons -->
+        <div class="google-swiper-button-prev swiper-button-prev"></div>
+        <div class="google-swiper-button-next swiper-button-next"></div>
+        <!-- Pagination -->
+        <div class="google-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const googleSwiper = new Swiper('.google-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.google-swiper-button-next',
+      prevEl: '.google-swiper-button-prev',
+    },
+    pagination: {
+      el: '.google-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- Google Review End -->
+
+
+<!-- Sortlist Review -->
+<div id="sortlist-review-main-container">
+  <div id="sortlist-review-inner-container">
+    <div id="sortlist-review-top-container">
+      <h2>Sortlist Reviews</h2>
+    </div>
+    <div id="sortlist-review-bottom-container">
+      <div class="sortlist-swiper-container swiper">
+        <div class="sortlist-swiper-wrapper swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="sortlist-swiper-slide swiper-slide">
+            <div class="sortlist-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="sortlist-swiper-slide-medium">
+              <p>Fantastic team culture and forward-thinking leadership.</p>
+            </div>
+            <div class="sortlist-swiper-slide-bottom">
+              <p>Posted on Sortlist</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="sortlist-swiper-slide swiper-slide">
+            <div class="sortlist-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="sortlist-swiper-slide-medium">
+              <p>Encouraging space for innovation and creativity to thrive.</p>
+            </div>
+            <div class="sortlist-swiper-slide-bottom">
+              <p>Posted on Sortlist</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="sortlist-swiper-slide swiper-slide">
+            <div class="sortlist-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="sortlist-swiper-slide-medium">
+              <p>Workplace that truly values growth and employee wellbeing.</p>
+            </div>
+            <div class="sortlist-swiper-slide-bottom">
+              <p>Posted on Sortlist</p>
+            </div>
+          </div>
+           <!-- Slide 4 -->
+          <div class="topdevelopers-swiper-slide swiper-slide">
+            <div class="topdevelopers-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="topdevelopers-swiper-slide-medium">
+              <p>Top-level development and fantastic communication. Highly recommended.</p>
+            </div>
+            <div class="topdevelopers-swiper-slide-bottom">
+              <p>Posted on SortList</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="topdevelopers-swiper-slide swiper-slide">
+            <div class="topdevelopers-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="topdevelopers-swiper-slide-medium">
+              <p>One of the best tech partners we've worked with. Smooth execution and great results.</p>
+            </div>
+            <div class="topdevelopers-swiper-slide-bottom">
+              <p>Posted on SortList</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <div class="sortlist-swiper-button-prev swiper-button-prev"></div>
+        <div class="sortlist-swiper-button-next swiper-button-next"></div>
+
+        <!-- Pagination -->
+        <div class="sortlist-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Swiper CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const sortlistSwiper = new Swiper('.sortlist-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.sortlist-swiper-button-next',
+      prevEl: '.sortlist-swiper-button-prev',
+    },
+    pagination: {
+      el: '.sortlist-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+<!-- Sortlist Review End -->
+
+<!-- LinkedIn Review -->
+<div id="linkedin-review-main-container">
+  <div id="linkedin-review-inner-container">
+    <div id="linkedin-review-top-container">
+      <h2>LinkedIn Reviews</h2>
+    </div>
+    <div id="linkedin-review-bottom-container">
+      <div class="linkedin-swiper-container swiper">
+        <div class="linkedin-swiper-wrapper swiper-wrapper">
+
+          <!-- Slide 1 -->
+          <div class="linkedin-swiper-slide swiper-slide">
+            <div class="linkedin-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="linkedin-swiper-slide-medium">
+              <p>Truly professional experience! Their dedication and vision impressed us from day one.</p>
+            </div>
+            <div class="linkedin-swiper-slide-bottom">
+              <p>Posted on LinkedIn</p>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="linkedin-swiper-slide swiper-slide">
+            <div class="linkedin-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="linkedin-swiper-slide-medium">
+              <p>One of the most efficient and proactive teams we've ever collaborated with.</p>
+            </div>
+            <div class="linkedin-swiper-slide-bottom">
+              <p>Posted on LinkedIn</p>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="linkedin-swiper-slide swiper-slide">
+            <div class="linkedin-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="linkedin-swiper-slide-medium">
+              <p>Reliable, knowledgeable, and easy to work with. Highly recommend their services.</p>
+            </div>
+            <div class="linkedin-swiper-slide-bottom">
+              <p>Posted on LinkedIn</p>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="linkedin-swiper-slide swiper-slide">
+            <div class="linkedin-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="linkedin-swiper-slide-medium">
+              <p>They constantly exceeded our expectations. A top-tier team!</p>
+            </div>
+            <div class="linkedin-swiper-slide-bottom">
+              <p>Posted on LinkedIn</p>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="linkedin-swiper-slide swiper-slide">
+            <div class="linkedin-swiper-slide-top">
+              <p>5.0</p>
+              <img src="/Images/Yellow 5 Start.png" alt="Star Rating">
+            </div>
+            <div class="linkedin-swiper-slide-medium">
+              <p>Creative thinkers and great collaborators. Loved working with them!</p>
+            </div>
+            <div class="linkedin-swiper-slide-bottom">
+              <p>Posted on LinkedIn</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="linkedin-swiper-button-prev swiper-button-prev"></div>
+        <div class="linkedin-swiper-button-next swiper-button-next"></div>
+
+        <!-- Pagination -->
+        <div class="linkedin-swiper-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Swiper JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Swiper Initialization -->
+<script>
+  const linkedinSwiper = new Swiper('.linkedin-swiper-container', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.linkedin-swiper-button-next',
+      prevEl: '.linkedin-swiper-button-prev',
+    },
+    pagination: {
+      el: '.linkedin-swiper-pagination',
+      clickable: true,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+  });
+</script>
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="images/logo.webp" alt="Logo" />
+                <h2>Get updates.</h2>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Submit</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="footer-description">
+                    Elevating collaboration to new dimensions—where VR, AR, MR and AI unite to shape smarter, more immersive experiences.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li>AR — Augmented Reality</li>
+                        <li>VR — Virtual Reality</li>
+                        <li>MR — Mixed Reality</li>
+                        <li>XR — Extended Reality</li>
+                        <li>VR360 — 360° Virtual Reality</li>
+                        <li>VR Simulation</li>
+                        <li>Copilot — AI Assistant</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Tools & Technologies</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="schedule-demo.html">Schedule Demo</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        +44 7463 151997
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        info@vrwings.com
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        20 Wenlock Road, London, N1 7GU
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            ©2026 VR Wings. All rights reserved.
+        </div>
+    </footer>
+     
+<!-- BOOTSTRAP SCRIPT -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
