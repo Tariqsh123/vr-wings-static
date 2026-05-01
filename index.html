@@ -205,7 +205,7 @@
             mainHeading.style.textShadow = "0 2px 20px rgba(0,0,0,0.7)";
             ctaButton.style.boxShadow = "0 18px 40px rgba(128, 0, 255, 0.65)";
         } else {
-            mainHeading.style.color = "#d4b5ff";
+            mainHeading.style.color = "#51007d";
             mainHeading.style.textShadow = p > 0.78 ? "0 0 22px rgba(160,100,255,0.5)" : "none";
             ctaButton.style.boxShadow = p > 0.78 ? "0 20px 48px rgba(200,160,255,0.5)" : "0 10px 30px rgba(128, 0, 255, 0.4)";
         }
@@ -213,7 +213,6 @@
         const btnTranslate = Math.min(p * 4.5, 16);
         ctaButton.style.transform = `translateY(${btnTranslate}px)`;
         
-        // bg gradient always visible - no black canvas
         bgGradient.style.opacity = videoActive ? "0.3" : "0.95";
         
         const modelTopPercent = isMobile 
@@ -258,6 +257,7 @@
             isModelVisible = false;
             videoOverlay.style.display = "block";
             heroVideo.play().catch(e => console.log("video play", e));
+            // Unlock body scroll when video becomes visible
             document.body.classList.remove('locked');
             if (currentModel) currentModel.visible = false;
             container.style.opacity = "0";
@@ -266,91 +266,104 @@
         }
     }
     
-    // Reverse when user scrolls UP and body at top
-    function reverseVideoIfAtTop() {
+    // Reverse video ONLY when scroll position is EXACTLY at top (0)
+    function reverseVideoAndRestoreModel() {
         if (!isVideoVisible) return false;
         if (isReversing) return false;
         
+        // CRITICAL: Only reverse if scroll position is 0 (complete top)
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const isAtTop = scrollTop <= 15;
+        if (scrollTop !== 0) return false;  // Not at exact top, don't reverse
         
-        if (isAtTop) {
-            isReversing = true;
-            videoOverlay.style.transition = "opacity 0.25s ease";
-            videoOverlay.style.opacity = "0";
+        isReversing = true;
+        
+        // Fade out video overlay smoothly
+        videoOverlay.style.transition = "opacity 0.25s ease";
+        videoOverlay.style.opacity = "0";
+        
+        setTimeout(() => {
+            videoOverlay.style.display = "none";
+            videoOverlay.style.opacity = "";
+            heroVideo.pause();
+            heroVideo.currentTime = 0;
+            
+            // Restore visual states
+            isVideoVisible = false;
+            isModelVisible = true;
+            if (currentModel) currentModel.visible = true;
+            container.style.opacity = "1";
+            videoTriggered = false;
+            
+            // Reset progress to 0.42
+            progress = 0.42;
+            targetProgress = 0.42;
+            
+            // Re-lock scrolling because we're back in transition zone
+            document.body.classList.add('locked');
+            
+            updateUI();
             
             setTimeout(() => {
-                videoOverlay.style.display = "none";
-                videoOverlay.style.opacity = "";
-                heroVideo.pause();
-                heroVideo.currentTime = 0;
-                
-                isVideoVisible = false;
-                isModelVisible = true;
-                if (currentModel) currentModel.visible = true;
-                container.style.opacity = "1";
-                videoTriggered = false;
-                document.body.classList.add('locked');
-                
-                progress = 0.42;
-                targetProgress = 0.42;
-                updateUI();
-                
-                setTimeout(() => {
-                    isReversing = false;
-                }, 100);
-            }, 200);
-            return true;
-        }
-        return false;
+                isReversing = false;
+            }, 150);
+        }, 200);
+        return true;
     }
     
-    // Scroll handler
-    function addProgressFromScroll(deltaY) {
-        if (isVideoVisible) {
-            if (deltaY < 0) {
-                reverseVideoIfAtTop();
-            }
-            return;
-        }
-        if (isReversing) return;
-        
-        let sensitivity = isMobile ? 0.0014 : 0.00048;
-        let deltaChange = deltaY * sensitivity;
-        let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
-        
-        if (newProgress !== progress) {
-            progress = newProgress;
-            targetProgress = progress;
-            updateUI();
-            checkAndTriggerVideo();
-            
-            if (progress > 0 && progress < 1 && !isVideoVisible) {
-                document.body.classList.add('locked');
-            } else if (progress === 0 && !isVideoVisible) {
-                document.body.classList.remove('locked');
-            }
-        }
-    }
-    
+    // Handle wheel scroll
     function handleWheel(e) {
+        const deltaY = e.deltaY;
+        
         if (isReversing) {
             e.preventDefault();
             return;
         }
+        
+        // VIDEO VISIBLE CASE
         if (isVideoVisible) {
-            if (e.deltaY < 0) {
-                e.preventDefault();
-                reverseVideoIfAtTop();
+            // ONLY reverse if scrolling UP AND scroll position is exactly 0
+            if (deltaY < 0) {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                if (scrollTop === 0) {
+                    e.preventDefault();
+                    reverseVideoAndRestoreModel();
+                }
+                // If not at top (scrollTop > 0), do nothing - allow normal scroll up
             }
+            // Scrolling DOWN: NEVER reverse, just let page scroll normally
             return;
         }
-        if (progress > 0 && progress < 1) {
-            e.preventDefault();
+        
+        // MODEL VISIBLE CASE - progress zone
+        if (!isVideoVisible && isModelVisible && !isReversing) {
+            // Lock scroll ONLY when inside progress zone (not at extremes)
+            if (progress > 0 && progress < 1) {
+                e.preventDefault();
+            }
+            
+            let sensitivity = isMobile ? 0.0014 : 0.00048;
+            let deltaChange = deltaY * sensitivity;
+            let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
+            
+            if (newProgress !== progress) {
+                progress = newProgress;
+                targetProgress = progress;
+                updateUI();
+                checkAndTriggerVideo();
+                
+                // Manage body lock
+                if (progress > 0 && progress < 1 && !isVideoVisible) {
+                    document.body.classList.add('locked');
+                } else if (progress === 0 && !isVideoVisible) {
+                    document.body.classList.remove('locked');
+                } else if (progress === 1 && !isVideoVisible) {
+                    document.body.classList.remove('locked');
+                }
+            }
         }
-        addProgressFromScroll(e.deltaY);
     }
     
+    // Touch handlers for mobile
     function handleTouchStart(e) {
         touchStartY = e.touches[0].clientY;
     }
@@ -367,26 +380,48 @@
         let deltaY = touchStartY - currentY;
         touchStartY = currentY;
         
+        // Video visible case
         if (isVideoVisible) {
             if (deltaY < 0) {
-                e.preventDefault();
-                reverseVideoIfAtTop();
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                if (scrollTop === 0) {
+                    e.preventDefault();
+                    reverseVideoAndRestoreModel();
+                }
             }
             return;
         }
-        e.preventDefault();
-        let sensitivity = isMobile ? 0.0019 : 0.0006;
-        let deltaChange = deltaY * sensitivity;
-        let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
-        if (newProgress !== progress) {
-            progress = newProgress;
-            targetProgress = progress;
-            updateUI();
-            checkAndTriggerVideo();
-            if (progress > 0 && progress < 1 && !isVideoVisible) {
-                document.body.classList.add('locked');
-            } else if (progress === 0 && !isVideoVisible) {
-                document.body.classList.remove('locked');
+        
+        // Model visible case
+        if (!isVideoVisible && isModelVisible) {
+            if (progress > 0 && progress < 1) {
+                e.preventDefault();
+            }
+            let sensitivity = isMobile ? 0.0019 : 0.0006;
+            let deltaChange = deltaY * sensitivity;
+            let newProgress = Math.min(Math.max(progress + deltaChange, 0), 1);
+            if (newProgress !== progress) {
+                progress = newProgress;
+                targetProgress = progress;
+                updateUI();
+                checkAndTriggerVideo();
+                if (progress > 0 && progress < 1 && !isVideoVisible) {
+                    document.body.classList.add('locked');
+                } else if (progress === 0 && !isVideoVisible) {
+                    document.body.classList.remove('locked');
+                } else if (progress === 1 && !isVideoVisible) {
+                    document.body.classList.remove('locked');
+                }
+            }
+        }
+    }
+    
+    // Global scroll handler for scrollbar - ONLY reverse at exact top
+    function handleGlobalScroll() {
+        if (isVideoVisible && !isReversing) {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            if (scrollTop === 0) {
+                reverseVideoAndRestoreModel();
             }
         }
     }
@@ -610,9 +645,11 @@
         initThree();
     }
     
+    // Event listeners
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('scroll', handleGlobalScroll);
     
     ctaButton.addEventListener('click', () => {
         if (!isVideoVisible && !isReversing && progress < 0.9) {
