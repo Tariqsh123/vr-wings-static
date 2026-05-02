@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <span class="dropbtn" onclick="toggleDropdown()">Our Services ▼</span>
+                    <div class="dropdown-content" id="dropdown">
+                        <a href="ar-service.html">AR — Augmented Reality</a>
+                        <a href="vr-service.html">VR — Virtual Reality</a>
+                        <a href="mr-service.html">MR — Mixed Reality</a>
+                        <a href="xr-service.html">XR — Extended Reality</a>
+                        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+                        <a href="vr-simulation-service.html">VR Simulation</a>
+                        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
+                    </div>
+                </div>
+                <a href="#">Pricing</a>
+                <a href="#">Tools & Technologies</a>
+                <a href="blog.html">Blogs</a>
+                <a href="#">About</a>
+                <a href="schedule-demo.html">Schedule Demo</a>
+                <a href="contact-us.html" class="contact-btn">Contact Us</a>
+            </div>
+            <div class="menu-btn" onclick="openMenu()">☰</div>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">✕</div>
+        <h2>Our Services</h2>
+        <a href="ar-service.html">AR — Augmented Reality</a>
+        <a href="vr-service.html">VR — Virtual Reality</a>
+        <a href="mr-service.html">MR — Mixed Reality</a>
+        <a href="xr-service.html">XR — Extended Reality</a>
+        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+        <a href="vr-simulation-service.html">VR Simulation</a>
+        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
+        <hr style="margin:20px 0;">
+        <a href="#">Pricing</a>
+        <a href="#">Tools & Technologies</a>
+        <a href="blog.html">Blogs</a>
+        <a href="#">About</a>
+        <a href="schedule-demo.html">Schedule Demo</a>
+        <a href="contact-us.html" style="background:#000;padding:10px 15px;border-radius:20px;text-align:center;">Contact Us</a>
+    </div>
+
+    <script>
+        let dropdown = document.getElementById("dropdown");
+        let mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleDropdown() {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest(".dropdown")) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        function openMenu() {
+            mobileMenu.classList.add("show");
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove("show");
+        }
+    </script>
+
+    
+
+    <section class="service-page-hero-section-main">
+  <div class="service-page-hero-section-container">
+
+    <!-- LEFT CONTENT -->
+    <div class="service-page-hero-section-text">
+      <h1 class="service-page-hero-section-heading">
+        The VR (Virtual Reality) procedural skills platform that develops confident, independent learners faster
+      </h1>
+
+      <p class="service-page-hero-section-description">
+        Break onboarding bottlenecks with VR Wings Virtual Reality Training, the VR training solution for health systems to maximize training outcomes while minimizing resource strain. Give your new nurses a safe, immersive, and cost-effective way to practice their skills in realistic clinical environments and give supervisors actionable performance data.
+      </p>
+
+      <a href="schedule-demo.html" class="service-page-hero-section-btn">
+        Request a walkthrough
+      </a>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="service-page-hero-section-image">
+      <img 
+        src="https://www.smu.edu/-/media/site/meadows/newsstories/2023/bisk-smu-new-masters-program/creative-technology-girl-wearing-vr-goggles.png"  
+        alt="VR Training" 
+        class="service-page-hero-section-img"
+      />
+    </div>
+
+  </div>
+</section>
+<section class="service-page-hero-section-video-wrapper">
+  <div class="service-page-hero-section-video-container" id="servicePageVideoSection">
+
+    <!-- BG VIDEO -->
+    <video 
+      class="service-page-hero-section-video"
+      autoplay 
+      muted 
+      loop 
+      playsinline>
+      <source src="video.webm" type="video/mp4">
+    </video>
+
+    <!-- OVERLAY -->
+    <div class="service-page-hero-section-overlay"></div>
+
+    <!-- CENTER CONTENT -->
+    <div class="service-page-hero-section-content">
+      <h2 class="service-page-hero-section-video-heading">
+        Immersive Virtual Reality (VR) Training Experience
+      </h2>
+    </div>
+
+  </div>
+</section>
+<script>
+const section = document.getElementById("servicePageVideoSection");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.classList.add("active");
+      } else {
+        section.classList.remove("active");
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+observer.observe(section);
+</script>
+
+<section class="stronger-section">
+
+  <div class="container">
+
+    <!-- HEADING -->
+    <h2 class="section-heading">
+      Stronger teams. Smarter care with Virtual Reality.
+    </h2>
+
+    <!-- SECTION 1 (LEFT IMAGE) -->
+    <div class="section-row" id="stronger-row-reverse">
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68daae4578ce71339240122e_Built%20for%20graphic-p-800.jpg" alt="Healthcare systems">
+
+      <div class="text-box">
+        <h3>Built for modern healthcare systems</h3>
+        <p>
+          Designed in collaboration with clinicians, educators, and healthcare leaders,
+          our VR-powered training scenarios help teams deliver safer, faster, and more consistent patient care.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 (RIGHT IMAGE) -->
+    <div class="section-row reverse">
+      <div class="text-box">
+        <h3>Learn, experience, and collaborate in real time</h3>
+        <p>
+          The VR training platform immerses learners in fully interactive virtual environments,
+          where they can practice procedures, build confidence, and collaborate with instructors and peers.
+        </p>
+      </div>
+
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9a3321cd6352b16667fc1_Built%20for%20nursing%20graphic.jpg" alt="VR Training">
+    </div>
+
+    <!-- SECTION 3 (LEFT IMAGE AGAIN) -->
+    <div class="section-row" id="stronger-row-reverse">
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d99780ee8e329fe016fbc5_Debrief%20feature%20graphic%20plain.jpg" alt="Standards into action">
+
+      <div class="text-box">
+        <h3>Turning standards into actionable VR guidance</h3>
+        <p>
+          Our VR-powered Domains of Excellence framework transforms complex clinical standards
+          into immersive simulation-based guidance, helping healthcare teams act with clarity and confidence.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="service-page-popup-section-main">
+
+  <h2 class="service-page-popup-section-heading">
+    Flexible ways to train.<br> Powered by Virtual Reality.
+  </h2>
+
+  <div class="service-page-popup-section-grid">
+
+    <!-- CARD 1 -->
+    <div class="service-page-popup-section-card">
+
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6c0d013c2c30cdb67dd72_Independent%20Training%20Graphic%20Green.avif" class="service-page-popup-section-img">
+
+      <!-- TAG -->
+      <div class="service-page-popup-section-tag service-page-popup-section-tag-left">
+        <span>VR Guided Mode</span>
+        <div class="service-page-popup-section-plus">
+          +
+          <div class="service-page-popup-section-popup">
+            Practice real clinical procedures in fully immersive VR environments with step-by-step guidance.
+          </div>
+        </div>
+      </div>
+
+      <div class="service-page-popup-section-tag service-page-popup-section-tag-center">
+        <div class="service-page-popup-section-plus">
+          +
+          <div class="service-page-popup-section-popup">
+            Build confidence through realistic VR simulations without any risk to patients.
+          </div>
+        </div>
+        <span>Skill Practice Mode</span>
+      </div>
+
+      <h3 class="service-page-popup-section-title">
+        Independent VR Training
+      </h3>
+
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="service-page-popup-section-card">
+
+      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6c035b815e7128ce4722a_Collab%20Training%20Graphic%20Blue.avif" class="service-page-popup-section-img">
+
+      <div class="service-page-popup-section-tag service-page-popup-section-tag-right">
+        <div class="service-page-popup-section-plus">
+          +
+          <div class="service-page-popup-section-popup">
+            Collaborate in shared VR environments for real-time team-based learning and coordination.
+          </div>
+        </div>
+        <span>VR Collaboration Mode</span>
+      </div>
+
+      <h3 class="service-page-popup-section-title">
+        Collaborative VR Training
+      </h3>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="service-page-laptop-section-main">
+
+  <div class="service-page-laptop-section-container">
+
+    <h2 class="service-page-laptop-section-heading">
+      VR Wings™ Virtual Reality Learning Platform
+    </h2>
+
+    <span class="service-page-laptop-section-subheading">
+      One platform to centralize all immersive VR learning and analytics.
+    </span>
+
+    <div class="service-page-laptop-section-image-wrap">
+      <img 
+        src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6a9d45eb01e0dd4c2cf42_MacBook-Pro-16.avif" 
+        alt="Laptop Platform"
+        class="service-page-laptop-section-img"
+      >
+    </div>
+
+    <p class="service-page-laptop-section-description">
+      VR Wings™ is a powerful centralized VR learning platform designed to streamline immersive training, enhance clinical skill development, and deliver real-time performance insights. It enables organizations to train learners in realistic virtual environments while tracking progress through advanced analytics. With an intuitive and scalable system, it helps healthcare teams improve efficiency, reduce training costs, and ensure consistent outcomes across all experience levels.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="service-page-laptop-section-box-wrapper">
+
+  <div class="service-page-laptop-section-box">
+
+    <h2 class="service-page-laptop-section-box-heading">
+      6 Domains of Excellence™
+    </h2>
+
+    <span class="service-page-laptop-section-box-subheading">
+      Align nursing skills training to critical system priorities
+    </span>
+
+    <p class="service-page-laptop-section-box-description">
+      With VR Wings™, your training is connected to systemwide priorities through immersive virtual reality scenarios built on national healthcare standards and competency benchmarks. This ensures every learning experience directly supports safer, more consistent clinical performance.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<section class="service-page-card-carousel-section">
+
+  <div class="service-page-card-carousel-header">
+    <h2 class="service-page-card-carousel-title">
+      Join the system leaders choosing VR Wings™
+    </h2>
+    <p class="service-page-card-carousel-subtitle">
+      Here’s how healthcare educators are transforming training with VR Wings™
+    </p>
+  </div>
+
+  <div class="swiper service-page-card-carousel-swiper">
+
+    <div class="swiper-wrapper service-page-card-carousel-wrapper">
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-green">
+          <h4>Flexibility</h4>
+          <h3>Multimodal VR training designed for every learning style</h3>
+          <p>Supports independent, peer-based and instructor-led immersive VR learning in one unified platform.</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-yellow">
+          <h4>Efficiency</h4>
+          <h3>High-frequency VR practice without limitations</h3>
+          <p>Repeat clinical simulations in virtual environments without physical resources or overhead.</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-purple">
+          <h4>Value</h4>
+          <h3>Faster clinical readiness through VR training</h3>
+          <p>Improves onboarding speed and workforce readiness with measurable outcomes.</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-blue">
+          <h4>Scalability</h4>
+          <h3>Train unlimited learners in VR environments</h3>
+          <p>Scale immersive training across departments without additional infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-pink">
+          <h4>Engagement</h4>
+          <h3>Immersive VR learning that improves retention</h3>
+          <p>Realistic virtual simulations enhance long-term clinical skill memory.</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide service-page-card-carousel-slide">
+        <div class="service-page-card-carousel-card service-page-card-carousel-dark">
+          <h4>Consistency</h4>
+          <h3>Standardized VR training across all learners</h3>
+          <p>Ensures consistent competency assessment across all healthcare teams.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pagination dots -->
+    <div class="swiper-pagination service-page-card-carousel-pagination"></div>
+
+  </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+const servicePageCardCarouselSwiper = new Swiper(".service-page-card-carousel-swiper", {
+  loop: true,
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
+  speed: 800,
+  slidesPerView: 3,
+  spaceBetween: 20,
+
+  pagination: {
+    el: ".service-page-card-carousel-pagination",
+    clickable: true,
+  },
+
+  breakpoints: {
+    320: { slidesPerView: 1 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+</script>
+
+
+<section class="cta-section">
+
+  <!-- BACKGROUND BLURS -->
+  <div class="blob purple"></div>
+  <div class="blob pink"></div>
+
+  <!-- FLOATING IMAGES -->
+  <img class="headset" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d977f1c2950a7075aed961_8dccdbc99cae70c9067bdbd34262fbb4_Quest%20Headset-p-500.avif" alt="VR Headset">
+
+  <img class="controller front" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9780703992805e91bf8e9_c7c6966debbfde812931b8e1056b37c3_Front%20Controller.avif" alt="Controller">
+
+  <img class="controller back" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d978173585577e903ea326_4b2588e5bc103e0c5bb342b8cf4c8ac0_Back%20Controller.avif" alt="Controller">
+
+  <!-- CONTENT -->
+  <div class="cta-content">
+    <h2>Purposeful Practice.<br>Confident Care.</h2>
+
+    <button class="cta-btn">
+      Speak to our team →
+    </button>
+
+    <p>Join the leading healthcare institutions using VR Wings</p>
+  </div>
+
+</section>
+    
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="images/logo.webp" alt="Logo" />
+                <h2>Get updates.</h2>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Submit</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="footer-description">
+                    Elevating collaboration to new dimensions—where VR, AR, MR and AI unite to shape smarter, more immersive experiences.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="ar-service.html"> AR — Augmented Reality</a></li>
+                        <li><a href="vr-service.html"> VR — Virtual Reality</a></li>
+                        <li><a href="mr-service.html"> MR — Mixed Reality</a></li>
+                        <li><a href="xr-service.html"> XR — Extended Reality</a></li>
+                        <li><a href="vr360-service.html"> VR360 — 360° Virtual Reality</a></li>
+                        <li><a href="vr-simulation-service.html"> VR Simulation</a></li>
+                        <li><a href="ai-copilot-service.html"> Copilot — AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Tools & Technologies</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="schedule-demo.html">Schedule Demo</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        +44 7463 151997
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        info@vrwings.com
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        20 Wenlock Road, London, N1 7GU
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            ©2026 VR Wings. All rights reserved.
+        </div>
+    </footer>
+    <div id="backtotop-main-container">
+    <button id="back-to-top-btn">↑</button>
+</div>
+<script>
+const backToTopBtn = document.getElementById("backtotop-main-container");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+});
+
+// Smooth scroll to top
+document.getElementById("back-to-top-btn").addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+    <div class="whatsapp-widget">
+        <div class="whatsapp-icon" id="whatsapp-icon" onclick="toggleChat()">
+            <a href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" id="icon-text"><img loading="lazy" src="/Images/whatsapp.webp" title="The Brave Next WhatsApp" alt="Whatsapp"></a>
+        </div>
+    </div>
+    <div id="whatsapp-popup-main-container">
+    <span onclick="closeWhatsappPopup()">X</span>
+    <div id="whatsapp-icon-container">
+      <img src="https://img.icons8.com/?size=100&id=16733&format=png&color=1c732c" loading="lazy" alt="whatsapp-icon" title="whatsapp-icon">
+      <a id="Whatsapp-number" href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" title="Whatsapp Number">+ 447463151997</a>
+    </div>
+    <p>Please send your query or requirements in detail via whatsapp, and we will respond shortly. <br> Thank you!</p>
+  </div>
+  
+  <script>
+    let popupTimeout; 
+    let showAgainTimeout;  
+    function showWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'flex';
+      popupTimeout = setTimeout(() => {
+        popup.style.display = 'none';
+        showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+      }, 15000);
+    }
+    function closeWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'none';
+      clearTimeout(popupTimeout); 
+      showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+    }
+    window.addEventListener('load', function () {
+      setTimeout(showWhatsappPopup, 2000);
+    });
+  </script>
+  <!-- Whatsapp Popup -->
+    
+</body>
+</html>

@@ -21,13 +21,13 @@
                 <div class="dropdown">
                     <span class="dropbtn" onclick="toggleDropdown()">Our Services ▼</span>
                     <div class="dropdown-content" id="dropdown">
-                        <a href="#">AR — Augmented Reality</a>
-                        <a href="#">VR — Virtual Reality</a>
-                        <a href="#">MR — Mixed Reality</a>
-                        <a href="#">XR — Extended Reality</a>
-                        <a href="#">VR360 — 360° Virtual Reality</a>
-                        <a href="#">VR Simulation</a>
-                        <a href="#">Copilot — AI Assistant</a>
+                        <a href="ar-service.html">AR — Augmented Reality</a>
+                        <a href="vr-service.html">VR — Virtual Reality</a>
+                        <a href="mr-service.html">MR — Mixed Reality</a>
+                        <a href="xr-service.html">XR — Extended Reality</a>
+                        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+                        <a href="vr-simulation-service.html">VR Simulation</a>
+                        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
                     </div>
                 </div>
                 <a href="#">Pricing</a>
@@ -44,13 +44,13 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="close-btn" onclick="closeMenu()">✕</div>
         <h2>Our Services</h2>
-        <a href="#">AR — Augmented Reality</a>
-        <a href="#">VR — Virtual Reality</a>
-        <a href="#">MR — Mixed Reality</a>
-        <a href="#">XR — Extended Reality</a>
-        <a href="#">VR360 — 360° Virtual Reality</a>
-        <a href="#">VR Simulation</a>
-        <a href="#">AI Copilot</a>
+        <a href="ar-service.html">AR — Augmented Reality</a>
+        <a href="vr-service.html">VR — Virtual Reality</a>
+        <a href="mr-service.html">MR — Mixed Reality</a>
+        <a href="xr-service.html">XR — Extended Reality</a>
+        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+        <a href="vr-simulation-service.html">VR Simulation</a>
+        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
         <hr style="margin:20px 0;">
         <a href="#">Pricing</a>
         <a href="#">Tools & Technologies</a>
@@ -181,7 +181,7 @@
                 else if (windowWidth < 500) camera.position.set(0.02, -0.14, 5.7);
                 else camera.position.set(0.02, -0.12, 5.8);
             } else {
-                camera.position.set(-0.38, -0.82, 5.95);
+                camera.position.set(0, 0, 5.95);
             }
             camera.fov = isMobile ? (windowWidth < 380 ? 40 : 39) : 41;
             camera.aspect = windowWidth / window.innerHeight;
@@ -680,7 +680,6 @@
     </div>
 
     <div class="service-grid">
-
   <!-- AR -->
   <div class="service-card">
     <div class="service-gradient-border"></div>
@@ -688,23 +687,18 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine">
       <div class="service-shine-inner"></div>
     </div>
-
     <div class="service-content">
       <div class="service-bg-hover"></div>
       <div class="service-glow"></div>
-
       <div class="service-top">
         <div class="service-icon"><i class="fa-regular fa-eye"></i></div>
         <h3 class="service-heading">AR — Augmented Reality</h3>
       </div>
-
-      <p class="service-desc">Augmented Reality solutions...</p>
-
-      <a href="/services/ar" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">We create immersive Augmented Reality solutions that overlay digital content onto the real world. From interactive product visualizations and marketing campaigns to industrial training and navigation systems, our AR experiences enhance user engagement and deliver measurable business value.</p>
+      <a href="ar-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -715,17 +709,14 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-vr-cardboard"></i></div>
         <h3 class="service-heading">VR — Virtual Reality</h3>
       </div>
-
-      <p class="service-desc">Immersive Virtual Reality...</p>
-      <a href="/services/vr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">Our Virtual Reality solutions transport users into fully immersive digital environments. We develop high-quality VR experiences for training, education, gaming, virtual tours, and enterprise applications that deliver unparalleled presence and emotional impact.</p>
+      <a href="vr-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -736,17 +727,14 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-cube"></i></div>
         <h3 class="service-heading">MR — Mixed Reality</h3>
       </div>
-
-      <p class="service-desc">Mixed Reality applications...</p>
-      <a href="/services/mr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">Mixed Reality blends the physical and digital worlds seamlessly. We design advanced MR applications where users can interact with holographic objects in real-time, enabling powerful use cases in design collaboration, medical training, remote assistance, and complex data visualization.</p>
+      <a href="mr-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -757,17 +745,14 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
         <h3 class="service-heading">XR — Extended Reality</h3>
       </div>
-
-      <p class="service-desc">Extended Reality solutions...</p>
-      <a href="/services/xr" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">Our comprehensive Extended Reality solutions combine AR, VR, and MR technologies to create unified, future-ready experiences. We help businesses adopt XR strategically across multiple platforms and devices for maximum flexibility and scalability.</p>
+      <a href="xr-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -778,17 +763,14 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-film"></i></div>
         <h3 class="service-heading">VR360 — 360° Virtual Reality</h3>
       </div>
-
-      <p class="service-desc">360° VR experiences...</p>
-      <a href="/services/vr360" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">Capture and deliver breathtaking 360° experiences with our VR360 solutions. Perfect for virtual tours, real estate showcases, event coverage, tourism, and storytelling, we produce high-resolution, interactive 360° content that puts viewers right in the center of the action.</p>
+      <a href="vr360-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -799,17 +781,14 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
         <h3 class="service-heading">VR Simulation</h3>
       </div>
-
-      <p class="service-desc">High-fidelity VR simulations...</p>
-      <a href="/services/vr-simulation" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">We develop high-fidelity VR simulations for professional training and mission-critical scenarios. Our realistic virtual environments help industries like aviation, healthcare, manufacturing, and defense train personnel safely, cost-effectively, and with measurable performance improvements.</p>
+      <a href="vr-simulation-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
 
@@ -820,20 +799,16 @@
     <div class="service-corner service-tr"></div>
     <div class="service-corner service-bl"></div>
     <div class="service-corner service-br"></div>
-
     <div class="service-shine"><div class="service-shine-inner"></div></div>
-
     <div class="service-content">
       <div class="service-top">
         <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
         <h3 class="service-heading">AI Copilot</h3>
       </div>
-
-      <p class="service-desc">AI-powered copilot systems...</p>
-      <a href="/services/copilot" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
+      <p class="service-desc">Enhance productivity with intelligent AI Copilot systems. We build context-aware AI assistants that work alongside your team — providing real-time guidance, automating repetitive tasks, analyzing complex data, and supporting decision-making across various business functions.</p>
+      <a href="ai-copilot-service.html" class="service-btn">Learn More <i class="fa fa-arrow-right"></i></a>
     </div>
   </div>
-
 </div>
 
   </div>
@@ -1140,13 +1115,13 @@
                 <div class="footer-column">
                     <h4>Services</h4>
                     <ul>
-                        <li>AR — Augmented Reality</li>
-                        <li>VR — Virtual Reality</li>
-                        <li>MR — Mixed Reality</li>
-                        <li>XR — Extended Reality</li>
-                        <li>VR360 — 360° Virtual Reality</li>
-                        <li>VR Simulation</li>
-                        <li>Copilot — AI Assistant</li>
+                        <li><a href="ar-service.html"> AR — Augmented Reality</a></li>
+                        <li><a href="vr-service.html"> VR — Virtual Reality</a></li>
+                        <li><a href="mr-service.html"> MR — Mixed Reality</a></li>
+                        <li><a href="xr-service.html"> XR — Extended Reality</a></li>
+                        <li><a href="vr360-service.html"> VR360 — 360° Virtual Reality</a></li>
+                        <li><a href="vr-simulation-service.html"> VR Simulation</a></li>
+                        <li><a href="ai-copilot-service.html"> Copilot — AI Assistant</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1181,6 +1156,65 @@
             ©2026 VR Wings. All rights reserved.
         </div>
     </footer>
+    <div id="backtotop-main-container">
+    <button id="back-to-top-btn">↑</button>
+</div>
+<script>
+const backToTopBtn = document.getElementById("backtotop-main-container");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+});
+
+// Smooth scroll to top
+document.getElementById("back-to-top-btn").addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+    <div class="whatsapp-widget">
+        <div class="whatsapp-icon" id="whatsapp-icon" onclick="toggleChat()">
+            <a href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" id="icon-text"><img loading="lazy" src="/Images/whatsapp.webp" title="The Brave Next WhatsApp" alt="Whatsapp"></a>
+        </div>
+    </div>
+    <div id="whatsapp-popup-main-container">
+    <span onclick="closeWhatsappPopup()">X</span>
+    <div id="whatsapp-icon-container">
+      <img src="https://img.icons8.com/?size=100&id=16733&format=png&color=1c732c" loading="lazy" alt="whatsapp-icon" title="whatsapp-icon">
+      <a id="Whatsapp-number" href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" title="Whatsapp Number">+ 447463151997</a>
+    </div>
+    <p>Please send your query or requirements in detail via whatsapp, and we will respond shortly. <br> Thank you!</p>
+  </div>
+  
+  <script>
+    let popupTimeout; 
+    let showAgainTimeout;  
+    function showWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'flex';
+      popupTimeout = setTimeout(() => {
+        popup.style.display = 'none';
+        showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+      }, 15000);
+    }
+    function closeWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'none';
+      clearTimeout(popupTimeout); 
+      showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+    }
+    window.addEventListener('load', function () {
+      setTimeout(showWhatsappPopup, 2000);
+    });
+  </script>
+  <!-- Whatsapp Popup -->
     
 </body>
 </html>
