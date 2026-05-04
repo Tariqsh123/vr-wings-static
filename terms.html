@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
+            </div>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <span class="dropbtn" onclick="toggleDropdown()">Our Services ▼</span>
+                    <div class="dropdown-content" id="dropdown">
+                        <a href="ar-service.html">AR — Augmented Reality</a>
+                        <a href="vr-service.html">VR — Virtual Reality</a>
+                        <a href="mr-service.html">MR — Mixed Reality</a>
+                        <a href="xr-service.html">XR — Extended Reality</a>
+                        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+                        <a href="vr-simulation-service.html">VR Simulation</a>
+                        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
+                    </div>
+                </div>
+                <a href="#">Pricing</a>
+                <a href="#">Tools & Technologies</a>
+                <a href="blog.html">Blogs</a>
+                <a href="about-us.html">About</a>
+                <a href="schedule-demo.html">Schedule Demo</a>
+                <a href="contact-us.html" class="contact-btn">Contact Us</a>
+            </div>
+            <div class="menu-btn" onclick="openMenu()">☰</div>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="closeMenu()">✕</div>
+        <h2>Our Services</h2>
+        <a href="ar-service.html">AR — Augmented Reality</a>
+        <a href="vr-service.html">VR — Virtual Reality</a>
+        <a href="mr-service.html">MR — Mixed Reality</a>
+        <a href="xr-service.html">XR — Extended Reality</a>
+        <a href="vr360-service.html">VR360 — 360° Virtual Reality</a>
+        <a href="vr-simulation-service.html">VR Simulation</a>
+        <a href="ai-copilot-service.html">Copilot — AI Assistant</a>
+        <hr style="margin:20px 0;">
+        <a href="#">Pricing</a>
+        <a href="#">Tools & Technologies</a>
+        <a href="blog.html">Blogs</a>
+        <a href="about-us.html">About</a>
+        <a href="schedule-demo.html">Schedule Demo</a>
+        <a href="contact-us.html" style="background:#000;padding:10px 15px;border-radius:20px;text-align:center;">Contact Us</a>
+    </div>
+
+    <script>
+        let dropdown = document.getElementById("dropdown");
+        let mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleDropdown() {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest(".dropdown")) {
+                dropdown.style.display = "none";
+            }
+        });
+
+        function openMenu() {
+            mobileMenu.classList.add("show");
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove("show");
+        }
+    </script>
+
+
+    <style>
+      .terms-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(139, 92, 246, 0.08);
+      overflow: hidden;
+      transition: all 0.2s ease;
+      padding-top: 120px;   /* main padding top 120px */
+    }
+
+    /* header with #8b5cf6 gradient - no symbols or extra badges */
+    .terms-header {
+      background: linear-gradient(125deg, #8b5cf6 0%, #6d28d9 100%);
+      padding: 2rem 2rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .terms-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      word-break: break-word;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .terms-header .effective-date {
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      display: inline-block;
+      padding: 0.35rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      margin-top: 0.6rem;
+    }
+
+    /* button block - plain text, no extra lines, no symbols */
+    .terms-button-block {
+      text-align: center;
+      margin: 1.8rem 2rem 0.5rem 2rem;
+    }
+
+    .terms-redirect-btn {
+      background: #8b5cf6;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 60px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      letter-spacing: 0.2px;
+    }
+
+    .terms-redirect-btn:hover {
+      background: #7c3aed;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(139, 92, 246, 0.35);
+    }
+
+    .terms-redirect-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* main content area - no symbols inside lists, clean */
+    .terms-content {
+      padding: 2rem 2.2rem 2.8rem 2.2rem;
+    }
+
+    /* headings using #8b5cf6 */
+    .terms-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #8b5cf6;
+      margin: 2rem 0 0.9rem 0;
+      letter-spacing: -0.01em;
+    }
+
+    .terms-content h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .terms-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.6rem 0;
+      color: #2d3a4a;
+    }
+
+    .terms-content p {
+      margin: 1rem 0;
+      color: #2d3e50;
+      font-size: 1rem;
+    }
+
+    .terms-content strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* clean list - no special symbols (using standard disc) */
+    .terms-list {
+      margin: 1rem 0 1rem 1.8rem;
+      padding-left: 0.2rem;
+      list-style-type: disc;
+    }
+
+    .terms-list li {
+      margin: 0.6rem 0;
+      padding-left: 0.2rem;
+    }
+
+    /* remove any pseudo-elements that could add symbols */
+    .terms-list li::before {
+      display: none;
+    }
+
+    .ordered-list {
+      margin: 1rem 0 1rem 1.8rem;
+      padding-left: 0.5rem;
+    }
+
+    .ordered-list li {
+      margin: 0.5rem 0;
+    }
+
+    hr {
+      margin: 2rem 0;
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #c4b5fd;
+    }
+
+    a:hover {
+      color: #6d28d9;
+      border-bottom-color: #8b5cf6;
+    }
+
+    .terms-footer-note {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      border-top: 1px solid #ede9fe;
+      color: #5b6e8c;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 0 1rem 1.5rem 1rem;
+      }
+      .terms-container {
+        padding-top: 80px;
+      }
+      .terms-header h1 {
+        font-size: 1.8rem;
+      }
+      .terms-content {
+        padding: 1.5rem;
+      }
+      .terms-button-block {
+        margin: 1rem 1rem 0.5rem;
+      }
+      .terms-content h2 {
+        font-size: 1.45rem;
+        border-left-width: 4px;
+      }
+    }
+
+    /* For larger screens, explicit padding-top 120px remains */
+    @media (min-width: 681px) {
+      .terms-container {
+        padding-top: 120px;
+      }
+    }
+    </style>
+    <div class="terms-container">
+  <div class="terms-header">
+    <h1>Terms and Conditions</h1>
+    <div class="effective-date">Effective Date: May 27, 2022 · The VR Wings</div>
+  </div>
+
+  <div class="terms-content">
+    <p><strong>Welcome to The VR Wings</strong>. By accessing or using our website, VR training modules, content, or any associated services (“Services”), you agree to comply with these Terms and Conditions. If you do not agree, please discontinue use immediately.</p>
+
+    <h2>Modification of These Terms of Use</h2>
+    <p>We reserve the right to revise these Terms at any time, effective immediately upon posting. Your continued use of the Website constitutes acceptance of any changes. Please review this page periodically. The most current version will always be available here.</p>
+
+    <h2>Who Can Use the Website</h2>
+    <p>If you are acting on behalf of an organization, you warrant that you have authority to bind that entity. The VR Wings may, at its sole discretion, reject, suspend, or terminate access for any user without liability.</p>
+
+    <h2>User Conduct and Obligations</h2>
+    <p>All Content on this Website (including text, software, visuals, audio, and trademarks) is owned by The VR Wings or its licensors. You agree to comply with all applicable laws and refrain from:</p>
+    <ul class="terms-list">
+      <li>Providing false or deceptive information or impersonating any individual or entity.</li>
+      <li>Collecting personal data of other users without express consent.</li>
+      <li>Attempting to breach security, scanning vulnerabilities, or launching attacks.</li>
+      <li>Using bots, scrapers, crawlers, or any automated means to extract data.</li>
+      <li>Uploading malicious code, viruses, or harmful software.</li>
+      <li>Engaging in any activity that disrupts or overloads our infrastructure.</li>
+    </ul>
+
+    <h2>Intellectual Property Rights</h2>
+    <p>The VR Wings name, logo, course materials, and all proprietary content are protected under copyright, trademark, and other IP laws. You are granted a limited, revocable, non-transferable license to view and print content for personal, non-commercial purposes. Any unauthorized reproduction, distribution, or commercial use is strictly prohibited. To request permissions, contact <a href="mailto:legal@thewingsvr.com">legal@thewingsvr.com</a>.</p>
+
+    <h2>Electronic Communications</h2>
+    <p>By using our services, you consent to receive electronic communications from us (emails, notifications, etc.). You may withdraw consent at any time, however some features may become unavailable. Paper copies of electronic disclosures may be requested for a reasonable fee where permitted by law.</p>
+
+    <h2>Digital Millennium Copyright Act (DMCA)</h2>
+    <p>The VR Wings respects creators’ rights. If you believe copyrighted material has been used improperly, please notify our DMCA agent with the required details:</p>
+    <p>Designated Copyright Agent, The VR Wings, 548 Market St., PMB 78848, San Francisco, CA 94105-5401 · <a href="mailto:copyright@thewingsvr.com">copyright@thewingsvr.com</a><br>
+    Please include: identification of the copyrighted work, location of infringing material, good faith statement, and electronic signature.</p>
+
+    <h2>The VR Wings Privacy Policy</h2>
+    <p>Your data security matters. Our Privacy Policy explains how we collect, process, and protect your personal information. By accepting these Terms, you also acknowledge our Privacy Policy.</p>
+
+    <h2>Security and Account Responsibility</h2>
+    <p>You are responsible for safeguarding your login credentials. Immediately report any unauthorized access to <a href="mailto:support@thewingsvr.com">support@thewingsvr.com</a>. The VR Wings will not be liable for losses caused by compromised accounts if you fail to maintain confidentiality.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p><strong>TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE VR WINGS, ITS AFFILIATES, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, LOST DATA, OR BUSINESS INTERRUPTION, ARISING FROM YOUR USE OR INABILITY TO USE THE WEBSITE OR SERVICES, REGARDLESS OF THE LEGAL THEORY, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</strong></p>
+
+    <h2>Disclaimer of Warranties</h2>
+    <p>THE WEBSITE AND ALL CONTENT ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. THE VR WINGS MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT GUARANTEE THAT THE WEBSITE WILL BE ERROR-FREE, SECURE, OR FREE FROM HARMFUL COMPONENTS.</p>
+
+    <h2>Indemnification</h2>
+    <p>You agree to defend, indemnify, and hold harmless The VR Wings, its subsidiaries, directors, employees, and agents against any claims, damages, losses, and expenses (including reasonable counsel fees) arising from your breach of these Terms, violation of any law, or misuse of the Website.</p>
+
+    <h2>Termination of Access</h2>
+    <p>We reserve the right, with or without cause, to terminate or suspend your account and access to the Website immediately, without prior notice. Upon termination, all provisions of these Terms which by their nature should survive shall remain in effect.</p>
+
+    <h2>Third-Party Links and References</h2>
+    <p>Our platform may include links to external websites or resources. The VR Wings does not endorse and is not responsible for the content, privacy policies, or practices of any third-party sites. Your interaction with linked sites is at your own risk.</p>
+
+    <h2>Copyright and Trademark Notices</h2>
+    <p>All trademarks, service marks, and logos displayed on the Website are the property of The VR Wings or third-party owners. No right or license to use any Mark is granted without written permission. The VR Wings trade dress, including page headers, button icons, and custom graphics, may not be imitated without consent.</p>
+
+    <h2>Business Uses of Our Services</h2>
+    <p>If you access the Services on behalf of a business or organization, that entity agrees to be bound by these Terms and shall indemnify The VR Wings against any claim arising from its use or violation of these Terms.</p>
+
+    <h2>No Legal or Medical Advice</h2>
+    <p>Content provided on the Website is for informational purposes only and does not constitute legal, medical, or professional advice. You should consult qualified professionals for specific guidance tailored to your situation.</p>
+
+    <h2>Governing Law and Dispute Resolution</h2>
+    <p>These Terms are governed by the laws of the State of California, without regard to conflict of law principles. Any legal action arising from these Terms shall be brought exclusively in the state or federal courts located in San Francisco County, California. You waive any objection based on improper venue or forum non conveniens. Any claim must be filed within one year after it arises, otherwise it is permanently barred.</p>
+
+    <h2>How to Contact The VR Wings</h2>
+    <p>If you have any questions or concerns, please reach out:</p>
+    <p>Email: <a href="mailto:info@vrwings.com">info@vrwings.com</a><br>
+    Mail: The VR Wings, 20 Wenlock Road, London, N1 7GU</p>
+    <hr>
+    <p style="font-size: 0.9rem; font-style: italic;">By continuing to use The VR Wings platform, you acknowledge that you have read, understood, and agreed to these Terms and Conditions. This Agreement constitutes the entire understanding between you and The VR Wings superseding all prior agreements.</p>
+  </div>
+  <div class="terms-footer-note">
+    The VR Wings — Virtual reality training solutions. All rights reserved.
+  </div>
+</div>
+      
+     
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="images/logo.webp" alt="Logo" />
+                <h2>Get updates.</h2>
+                <div class="subscribe-box">
+                    <input type="email" placeholder="Enter your email" />
+                    <button>Submit</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="footer-description">
+                    Elevating collaboration to new dimensions—where VR, AR, MR and AI unite to shape smarter, more immersive experiences.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="ar-service.html"> AR — Augmented Reality</a></li>
+                        <li><a href="vr-service.html"> VR — Virtual Reality</a></li>
+                        <li><a href="mr-service.html"> MR — Mixed Reality</a></li>
+                        <li><a href="xr-service.html"> XR — Extended Reality</a></li>
+                        <li><a href="vr360-service.html"> VR360 — 360° Virtual Reality</a></li>
+                        <li><a href="vr-simulation-service.html"> VR Simulation</a></li>
+                        <li><a href="ai-copilot-service.html"> Copilot — AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Tools & Technologies</a></li>
+                        <li><a href="blog.html">Blogs</a></li>
+                        <li><a href="about-us.html">About</a></li>
+                        <li><a href="schedule-demo.html">Schedule Demo</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms And Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        +44 7463 151997
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        info@vrwings.com
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        20 Wenlock Road, London, N1 7GU
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            ©2026 VR Wings. All rights reserved.
+        </div>
+    </footer>
+    <div id="backtotop-main-container">
+    <button id="back-to-top-btn">↑</button>
+</div>
+<script>
+const backToTopBtn = document.getElementById("backtotop-main-container");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+});
+
+// Smooth scroll to top
+document.getElementById("back-to-top-btn").addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+    <div class="whatsapp-widget">
+        <div class="whatsapp-icon" id="whatsapp-icon" onclick="toggleChat()">
+            <a href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" id="icon-text"><img loading="lazy" src="/Images/whatsapp.webp" title="The Brave Next WhatsApp" alt="Whatsapp"></a>
+        </div>
+    </div>
+    <div id="whatsapp-popup-main-container">
+    <span onclick="closeWhatsappPopup()">X</span>
+    <div id="whatsapp-icon-container">
+      <img src="https://img.icons8.com/?size=100&id=16733&format=png&color=1c732c" loading="lazy" alt="whatsapp-icon" title="whatsapp-icon">
+      <a id="Whatsapp-number" href="https://api.whatsapp.com/send?phone=447463151997" target="_blank" title="Whatsapp Number">+ 447463151997</a>
+    </div>
+    <p>Please send your query or requirements in detail via whatsapp, and we will respond shortly. <br> Thank you!</p>
+  </div>
+  
+  <script>
+    let popupTimeout; 
+    let showAgainTimeout;  
+    function showWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'flex';
+      popupTimeout = setTimeout(() => {
+        popup.style.display = 'none';
+        showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+      }, 15000);
+    }
+    function closeWhatsappPopup() {
+      const popup = document.getElementById('whatsapp-popup-main-container');
+      popup.style.display = 'none';
+      clearTimeout(popupTimeout); 
+      showAgainTimeout = setTimeout(showWhatsappPopup, 10000);
+    }
+    window.addEventListener('load', function () {
+      setTimeout(showWhatsappPopup, 2000);
+    });
+  </script>
+  <!-- Whatsapp Popup -->
+    
+</body>
+</html>

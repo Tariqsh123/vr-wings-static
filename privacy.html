@@ -83,75 +83,286 @@
         }
     </script>
 
-      
-    <section class="schedule-section">
 
-  <!-- TOP TEXT -->
-  <div class="schedule-top">
+    <style>
+      .terms-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(139, 92, 246, 0.08);
+      overflow: hidden;
+      transition: all 0.2s ease;
+      padding-top: 120px;   /* main padding top 120px */
+    }
 
-    <h4>Contact VR Wings Experts</h4>
+    /* header with #8b5cf6 gradient - no symbols or extra badges */
+    .terms-header {
+      background: linear-gradient(125deg, #8b5cf6 0%, #6d28d9 100%);
+      padding: 2rem 2rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
 
-    <h2>Elevate Your Brand with VR Wings Digital Solutions</h2>
+    .terms-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      word-break: break-word;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-    <p>
-      Work Smarter, Grow Faster, and Achieve Real Results with Our Expert Digital Services
+    .terms-header .effective-date {
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      display: inline-block;
+      padding: 0.35rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      margin-top: 0.6rem;
+    }
+
+    /* button block - plain text, no extra lines, no symbols */
+    .terms-button-block {
+      text-align: center;
+      margin: 1.8rem 2rem 0.5rem 2rem;
+    }
+
+    .terms-redirect-btn {
+      background: #8b5cf6;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 60px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      letter-spacing: 0.2px;
+    }
+
+    .terms-redirect-btn:hover {
+      background: #7c3aed;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(139, 92, 246, 0.35);
+    }
+
+    .terms-redirect-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* main content area - no symbols inside lists, clean */
+    .terms-content {
+      padding: 2rem 2.2rem 2.8rem 2.2rem;
+    }
+
+    /* headings using #8b5cf6 */
+    .terms-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #8b5cf6;
+      margin: 2rem 0 0.9rem 0;
+      letter-spacing: -0.01em;
+    }
+
+    .terms-content h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .terms-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.6rem 0;
+      color: #2d3a4a;
+    }
+
+    .terms-content p {
+      margin: 1rem 0;
+      color: #2d3e50;
+      font-size: 1rem;
+    }
+
+    .terms-content strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* clean list - no special symbols (using standard disc) */
+    .terms-list {
+      margin: 1rem 0 1rem 1.8rem;
+      padding-left: 0.2rem;
+      list-style-type: disc;
+    }
+
+    .terms-list li {
+      margin: 0.6rem 0;
+      padding-left: 0.2rem;
+    }
+
+    /* remove any pseudo-elements that could add symbols */
+    .terms-list li::before {
+      display: none;
+    }
+
+    .ordered-list {
+      margin: 1rem 0 1rem 1.8rem;
+      padding-left: 0.5rem;
+    }
+
+    .ordered-list li {
+      margin: 0.5rem 0;
+    }
+
+    hr {
+      margin: 2rem 0;
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #c4b5fd;
+    }
+
+    a:hover {
+      color: #6d28d9;
+      border-bottom-color: #8b5cf6;
+    }
+
+    .terms-footer-note {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      border-top: 1px solid #ede9fe;
+      color: #5b6e8c;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 0 1rem 1.5rem 1rem;
+      }
+      .terms-container {
+        padding-top: 80px;
+      }
+      .terms-header h1 {
+        font-size: 1.8rem;
+      }
+      .terms-content {
+        padding: 1.5rem;
+      }
+      .terms-button-block {
+        margin: 1rem 1rem 0.5rem;
+      }
+      .terms-content h2 {
+        font-size: 1.45rem;
+        border-left-width: 4px;
+      }
+    }
+
+    /* For larger screens, explicit padding-top 120px remains */
+    @media (min-width: 681px) {
+      .terms-container {
+        padding-top: 120px;
+      }
+    }
+    </style>
+    <div class="terms-container">
+  <div class="terms-header">
+    <h1>Privacy Policy</h1>
+    <div class="effective-date">Effective Date: May 27, 2022 · The VR Wings</div>
+  </div>
+
+  <div class="terms-content">
+    <p><strong>Welcome to The VR Wings</strong>. Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you access our website, VR training modules, and related services (“Services”). By using our Services, you agree to the terms of this Privacy Policy.</p>
+
+    <h2>Information We Collect</h2>
+    <p>We may collect personal and non-personal information, including but not limited to:</p>
+    <ul class="terms-list">
+      <li>Name, email address, and contact details</li>
+      <li>Account login credentials</li>
+      <li>Usage data, device information, and browser type</li>
+      <li>Payment and billing information (if applicable)</li>
+      <li>Any information you voluntarily provide to us</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <p>We use collected information to:</p>
+    <ul class="terms-list">
+      <li>Provide, operate, and maintain our Services</li>
+      <li>Improve user experience and platform performance</li>
+      <li>Communicate updates, support, and promotional content</li>
+      <li>Ensure security and prevent fraud or abuse</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+
+    <h2>Sharing of Information</h2>
+    <p>We do not sell your personal data. However, we may share information with:</p>
+    <ul class="terms-list">
+      <li>Service providers and partners assisting in operations</li>
+      <li>Legal authorities if required by law</li>
+      <li>Business transfers in case of merger, acquisition, or asset sale</li>
+    </ul>
+
+    <h2>Cookies and Tracking Technologies</h2>
+    <p>We use cookies and similar tracking technologies to enhance your experience. These help us analyze traffic, remember preferences, and improve our Services. You can control cookie settings through your browser.</p>
+
+    <h2>Data Security</h2>
+    <p>We implement appropriate technical and organizational measures to protect your data. However, no system is completely secure, and we cannot guarantee absolute security.</p>
+
+    <h2>Data Retention</h2>
+    <p>We retain your personal information only as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+
+    <h2>Your Rights and Choices</h2>
+    <p>You may have the right to:</p>
+    <ul class="terms-list">
+      <li>Access, update, or delete your personal data</li>
+      <li>Withdraw consent for data processing</li>
+      <li>Opt-out of marketing communications</li>
+      <li>Request a copy of your stored information</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>Our platform may contain links to third-party websites. We are not responsible for their privacy practices. We encourage you to review their policies before providing any information.</p>
+
+    <h2>Children’s Privacy</h2>
+    <p>Our Services are not intended for individuals under the age of 13. We do not knowingly collect personal information from children.</p>
+
+    <h2>International Data Transfers</h2>
+    <p>Your information may be transferred to and processed in countries outside your own. By using our Services, you consent to such transfers.</p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Continued use of the Services constitutes acceptance of those changes.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, you can contact us:</p>
+    <p>Email: <a href="mailto:info@vrwings.com">info@vrwings.com</a><br>
+    Mail: The VR Wings, 20 Wenlock Road, London, N1 7GU</p>
+
+    <hr>
+    <p style="font-size: 0.9rem; font-style: italic;">
+      By using The VR Wings platform, you acknowledge that you have read and understood this Privacy Policy.
     </p>
-
-    <span>
-      Book a 30-Minute Consultation to Discover How VR Wings Can Transform Your Business
-    </span>
-
   </div>
 
-  <!-- CALENDLY BOX -->
-  <div class="schedule-box">
-
-    <h2>Schedule Your Strategy Session with VR Wings!</h2>
-
-    <!-- Calendly Embed -->
-    <div
-      class="calendly-inline-widget"
-      data-url="https://calendly.com/channnelll123/30min"
-      style="width:100%;height:700px;"
-    ></div>
-
+  <div class="terms-footer-note">
+    The VR Wings — Virtual reality training solutions. All rights reserved.
   </div>
-
-</section>
-
-<!-- Calendly Script -->
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
+</div>
+      
      
-
-
-<section class="cta-section">
-
-  <!-- BACKGROUND BLURS -->
-  <div class="blob purple"></div>
-  <div class="blob pink"></div>
-
-  <!-- FLOATING IMAGES -->
-  <img class="headset" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d977f1c2950a7075aed961_8dccdbc99cae70c9067bdbd34262fbb4_Quest%20Headset-p-500.avif" alt="VR Headset">
-
-  <img class="controller front" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9780703992805e91bf8e9_c7c6966debbfde812931b8e1056b37c3_Front%20Controller.avif" alt="Controller">
-
-  <img class="controller back" src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d978173585577e903ea326_4b2588e5bc103e0c5bb342b8cf4c8ac0_Back%20Controller.avif" alt="Controller">
-
-  <!-- CONTENT -->
-  <div class="cta-content">
-    <h2>Purposeful Practice.<br>Confident Care.</h2>
-
-    <button class="cta-btn">
-      Speak to our team →
-    </button>
-
-    <p>Join the leading healthcare institutions using VR Wings</p>
-  </div>
-
-</section>
-    
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
