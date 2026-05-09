@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 * {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
@@ -231,7 +232,7 @@
             font-weight: bold;
             margin-bottom: 1.25rem;
             /* -webkit-text-stroke: .5px white; */
-            max-width: 780px;
+            max-width: 900px;
             text-shadow: 1px 1px 5px white !important;
             font-size: 55px !important;
             transition: color 0.3s, text-shadow 0.3s;
@@ -380,6 +381,151 @@
             width: 140px;
         }
 
+        .service-section {
+    padding: 80px 20px;
+    background: #f9fafb;
+  }
+
+  .service-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .service-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .service-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .service-subtitle {
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 18px;
+  }
+
+  .service-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .service-card {
+    width: 350px;
+    height: 440px;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid #e5e7eb;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(168, 85, 247, 0.2);
+    background: #9000ff; /* Purple on hover */
+  }
+
+  .service-content {
+    height: 100%;
+    padding: 35px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    transition: all 0.4s ease;
+  }
+
+  .service-top {
+    margin-bottom: 20px;
+  }
+
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #9000ff, #d946ef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 36px;
+    transition: all 0.4s ease;
+  }
+
+  .service-card:hover .service-icon {
+    background: white;
+    color: #9000ff;
+    transform: scale(1.1);
+  }
+
+  .service-heading {
+    font-size: 23px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+    transition: color 0.4s ease;
+  }
+
+  .service-desc {
+    color: #475569;
+    line-height: 1.6;
+    font-size: 14.5px;
+    flex-grow: 1;
+    transition: color 0.4s ease;
+  }
+
+  .service-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: #9000ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    margin-top: 10px;
+  }
+
+  .service-card:hover .service-heading,
+  .service-card:hover .service-desc {
+    color: white;
+  }
+
+  .service-card:hover .service-btn {
+    background: white;
+    color: #9000ff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-btn i {
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover .service-btn i {
+    transform: translateX(6px);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .service-card {
+      width: 100%;
+      max-width: 320px;
+      height: 420px;
+    }
+  }
+
         .subscribe-box {
             display: flex;
             gap: 15px;
@@ -501,336 +647,7 @@
                 justify-content: center;
             }
         }
-.service-section {
-  padding: 70px 20px;
-}
 
-.service-container {
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* HEADER */
-.service-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.service-title {
-  font-size: 48px;
-  font-weight: 700;
-}
-
-.service-subtitle {
-  margin-top: 10px;
-  color: #aaa;
-}
-
-/* GRID */
-.service-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-/* CARD */
-.service-card {
-            position: relative;
-            width: 350px;
-            height: 440px;
-            cursor: pointer;
-            border-radius: 18px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6);
-        }
-
-        /* ----- FIX: GRADIENT BORDER LAYER (always visible) ----- */
-        .service-gradient-border {
-            position: absolute;
-            inset: 0;
-            border-radius: 18px;
-            padding: 3px;
-            background: linear-gradient(125deg, #a855f7, #ec4899, #3b82f6, #a855f7);
-            background-size: 200% 200%;
-            z-index: 0;
-            /* mask trick for gradient BORDER only */
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            transition: background-position 0.4s ease;
-        }
-
-        .service-card:hover .service-gradient-border {
-            background-position: 100% 50%;
-        }
-
-        /* MAIN CONTENT (dark background) */
-        .service-content {
-  position: relative;
-  height: 100%;
-  background: #111827;
-  border-radius: 18px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* gradient border layer */
-.service-content::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 3px; /* border thickness */
-  border-radius: 18px;
-  background: linear-gradient(135deg, #a855f7, #ec4899, #3b82f6);
-
-  /* mask trick to show only border */
-  -webkit-mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-
-  pointer-events: none;
-}
-
-        /* Additional inner glow/nuance */
-        .service-glow {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 130px;
-            height: 130px;
-            background: radial-gradient(circle, rgba(168,85,247,0.45), rgba(236,72,153,0.25));
-            filter: blur(42px);
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .service-card:hover .service-glow {
-            opacity: 1;
-            transform: translateX(-50%) scale(1.6);
-        }
-
-        /* HOVER BG (soft gradient overlay) */
-        .service-bg-hover {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 50% 30%, rgba(168,85,247,0.12), rgba(236,72,153,0.08), rgba(59,130,246,0.05));
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-            z-index: 0;
-            border-radius: 18px;
-        }
-
-        .service-card:hover .service-bg-hover {
-            opacity: 1;
-        }
-
-        /* ICON STYLES */
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 34px;
-            transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 10px 18px -6px rgba(168,85,247,0.3);
-        }
-
-        .service-card:hover .service-icon {
-            transform: rotate(12deg) scale(1.08);
-        }
-
-        /* HEADING */
-        .service-heading {
-            color: white;
-            margin-top: 24px;
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: -0.2px;
-            background: linear-gradient(120deg, #f0f0ff, #e0e0ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.1);
-        }
-
-        /* DESCRIPTION */
-        .service-desc {
-            color: #b9c3e6;
-            font-size: 14px;
-            line-height: 1.5;
-            margin: 18px 0 14px 0;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        /* BUTTON */
-        .service-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 12px 20px;
-            border-radius: 40px;
-            background: linear-gradient(95deg, #7c3aed, #db2777);
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 14px rgba(124, 58, 237, 0.3);
-            border: none;
-            width: fit-content;
-            margin: 0 auto;
-        }
-
-        .service-btn i {
-            transition: transform 0.2s ease;
-        }
-
-        .service-btn:hover {
-            gap: 16px;
-            background: linear-gradient(95deg, #8b5cf6, #ec4899);
-            box-shadow: 0 8px 20px rgba(168,85,247,0.5);
-            color: white;
-        }
-
-        .service-btn:hover i {
-            transform: translateX(4px);
-        }
-
-        /* ---------------------- FIXED CORNERS (always visible + enhanced) ---------------------- */
-        .service-corner {
-            position: absolute;
-            width: 36px;
-            height: 36px;
-            pointer-events: none;
-            z-index: 15;
-            transition: all 0.25s ease-out;
-        }
-
-        /* each corner gets its own distinct gradient for modern look, but we keep border style */
-        .service-tl {
-            top: 14px;
-            left: 14px;
-            border-top: 3px solid #a855f7;
-            border-left: 3px solid #a855f7;
-            border-radius: 12px 0 0 0;
-            box-shadow: -2px -2px 6px rgba(168,85,247,0.3);
-        }
-
-        .service-tr {
-            top: 14px;
-            right: 14px;
-            border-top: 3px solid #ec4899;
-            border-right: 3px solid #ec4899;
-            border-radius: 0 12px 0 0;
-            box-shadow: 2px -2px 6px rgba(236,72,153,0.3);
-        }
-
-        .service-bl {
-            bottom: 14px;
-            left: 14px;
-            border-bottom: 3px solid #3b82f6;
-            border-left: 3px solid #3b82f6;
-            border-radius: 0 0 0 12px;
-            box-shadow: -2px 2px 6px rgba(59,130,246,0.3);
-        }
-
-        .service-br {
-            bottom: 14px;
-            right: 14px;
-            border-bottom: 3px solid #a855f7;
-            border-right: 3px solid #ec4899;
-            border-radius: 0 0 12px 0;
-            background: linear-gradient(145deg, transparent 60%, rgba(168,85,247,0.1));
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-        }
-
-        /* On hover, corners get a subtle glow + expansion */
-        .service-card:hover .service-corner {
-            filter: drop-shadow(0 0 4px rgba(168,85,247,0.6));
-        }
-
-        .service-card:hover .service-tl {
-            border-top-color: #c084fc;
-            border-left-color: #c084fc;
-        }
-
-        .service-card:hover .service-tr {
-            border-top-color: #f472b6;
-            border-right-color: #f472b6;
-        }
-
-        .service-card:hover .service-bl {
-            border-bottom-color: #60a5fa;
-            border-left-color: #60a5fa;
-        }
-
-        .service-card:hover .service-br {
-            border-bottom-color: #c084fc;
-            border-right-color: #f472b6;
-        }
-
-
-        /* Additional micro fix: service-card relative and corners above content */
-        .service-card {
-            isolation: isolate;
-        }
-
-        /* make sure corners are not clipped */
-        .service-corner {
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        
-        /* Consistent hover button style */
-        .service-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        
-        /* responsive fine-tune */
-        @media (max-width: 450px) {
-            .service-card {
-                width: 300px;
-                height: 430px;
-            }
-            .service-content {
-                padding: 20px 18px;
-            }
-            .service-heading {
-                font-size: 20px;
-            }
-            .service-corner {
-                width: 28px;
-                height: 28px;
-            }
-        }
 
 
 .stronger-section {
@@ -880,7 +697,7 @@
 /* TEXT */
 .text-box h3 {
   font-size: 35px;
-  color: #7c3aed;
+  color: #9000ff;
   margin-bottom: 10px;
 }
 
@@ -1148,7 +965,7 @@
 
 .cta-section {
   position: relative;
-  background: #7C3AED;
+  background: #9000ff;
   overflow: hidden;
   padding: 120px 20px;
   text-align: center;
@@ -1166,7 +983,7 @@
 .blob.purple {
   width: 300px;
   height: 300px;
-  background: #a855f7;
+  background: #9000ff;
   top: 0;
   right: 0;
 }
@@ -1230,7 +1047,7 @@
   margin-top: 40px;
   padding: 16px 40px;
   background: white;
-  color: #7C3AED;
+  color: #9000ff;
   border: none;
   border-radius: 50px;
   font-size: 18px;
@@ -1301,7 +1118,7 @@
 }
 
 .blog-header p {
-  color: #7c3aed;
+  color: #9000ff;
   font-weight: 600;
   margin-top: 60px;
 }
@@ -1336,7 +1153,7 @@
 
 .featured h2 {
   font-size: 28px;
-  color: #7c3aed;
+  color: #9000ff;
 }
 
 .featured p {
@@ -1376,7 +1193,7 @@
 
 /* PURPLE CARD */
 .card.purple {
-  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  background: linear-gradient(135deg, #9000ff, #9000ff);
   color: white;
   padding: 15px;
   border-radius: 16px;
@@ -1437,15 +1254,15 @@
 .btn-wrap button {
   padding: 10px 25px;
   border-radius: 30px;
-  border: 2px solid #7c3aed;
+  border: 2px solid #9000ff;
   background: transparent;
-  color: #7c3aed;
+  color: #9000ff;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .btn-wrap button:hover {
-  background: #7c3aed;
+  background: #9000ff;
   color: white;
 }
 
@@ -1722,7 +1539,7 @@
   padding: 12px;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(to right, #a855f7, #7c3aed);
+  background: linear-gradient(to right, #9000ff, #9000ff);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -3803,7 +3620,7 @@ text-align: center;}
 }
 
 .service-page-hero-section-btn:hover {
-  background: #7c3aed;
+  background: #9000ff;
 }
 
 /* RIGHT */
@@ -4021,7 +3838,7 @@ text-align: center;}
 }
 
 .service-page-popup-section-plus:hover {
-  background: #7c3aed;
+  background: #9000ff;
 }
 
 /* POPUP (NOW BELOW) */
@@ -4976,7 +4793,7 @@ text-align: center;}
 
   /* Carousel */
   .enhanced-carousel-wrapper {
-        background: linear-gradient(135deg, #a855f7, #ec4899);
+        background: linear-gradient(135deg, #9000ff, #ec4899);
     border-radius: 24px;
     padding: 20px;
     position: relative;
@@ -5094,7 +4911,7 @@ text-align: center;}
   }
 
   .multiple-card-icons span {
-    background: #a855f7;
+    background: #9000ff;
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
@@ -5164,7 +4981,7 @@ text-align: center;}
 
   .multiple-card-info-box p {
     font-weight: 600;
-    color: #a855f7;
+    color: #9000ff;
     margin-bottom: 6px;
   }
 
@@ -5234,7 +5051,7 @@ text-align: center;}
     max-width: 300px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    border: 12px solid #a855f7;
+    border: 12px solid #9000ff;
     overflow: hidden;
     position: relative;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -5260,7 +5077,7 @@ text-align: center;}
   }
 
   .home-extra-cta-primary-btn {
-    background: #a855f7;
+    background: #9000ff;
     color: white;
     border: none;
     padding: 16px 36px;
@@ -5282,7 +5099,7 @@ text-align: center;}
     right: -10px;
     top: 50%;
     transform: translateY(-50%);
-        background: linear-gradient(135deg, #a855f7, #ec4899);
+        background: linear-gradient(135deg, #9000ff, #ec4899);
     width: 52px;
     height: 220px;
     border-radius: 30px 0 0 30px;
@@ -5359,10 +5176,10 @@ text-align: center;}
 
 
 p,span,a,li{
-  font-family: sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 h1,h2,h3,h4,h5,h6{
- font-family: "Plus Jakarta Sans", sans-serif !important;
+ font-family: "Cabin", sans-serif !important; 
 }
 
 
