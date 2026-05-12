@@ -982,6 +982,49 @@
   });
 </script>
 
+<script>
+$(document).ready(function () {
+
+  const contentData = {
+    0: {
+      title: "3D/AR Edu Kits",
+      text: "Make learning fun and interactive with 3D/AR worksheets, presentations, block-based coding, and immersive educational activities!"
+    },
+    1: {
+      title: "Topics",
+      text: "Explore structured topics designed to enhance understanding through visuals, interactive modules, and smart learning paths!"
+    }
+  };
+
+  const cards = $('.enhanced-sidebar .enhanced-card');
+
+  // DEFAULT ACTIVE (first card)
+  cards.removeClass('active');
+  cards.eq(0).addClass('active');
+
+  // set default content
+  $('.enhanced-materials-title').text(contentData[0].title);
+  $('.enhanced-materials-text').text(contentData[0].text);
+
+  // click handling
+  cards.each(function(index){
+
+    $(this).on('click', function(){
+
+      cards.removeClass('active');
+      $(this).addClass('active');
+
+      if(contentData[index]) {
+        $('.enhanced-materials-title').text(contentData[index].title);
+        $('.enhanced-materials-text').text(contentData[index].text);
+      }
+
+    });
+
+  });
+
+});
+</script>
 
 <div class="multiple-card-main-container">
 
@@ -1114,44 +1157,31 @@
 </script>
 
 
-<div class="home-extra-cta-section">
+<div class="sticky-demo-wrapper" id="stickyDemo">
 
-  <div class="home-extra-cta-container">
+  <div class="sticky-tab" onclick="toggleDemo()">
+    <span>Book a Demo</span>
+  </div>
 
-    <!-- Left Image -->
-    <div class="home-extra-cta-image-wrapper">
-      <div class="home-extra-cta-circle">
-        <img src="images/extra-cta.png" 
-             alt="VR Education" 
-             class="home-extra-cta-image">
-      </div>
+  <div class="sticky-panel">
+
+    <div class="sticky-image">
+      <img src="images/extra-cta.png" alt="VR Education">
     </div>
 
-    <!-- Right Content -->
-    <div class="home-extra-cta-content">
-
-      <h2 class="home-extra-cta-title">
-        Experience The<br>Power Of VR For<br>Education
-      </h2>
-
-      <button class="home-extra-cta-primary-btn">
-        BOOK YOUR FREE DEMO
-      </button>
-
-      <!-- Orange Vertical Bar -->
-      <div class="home-extra-cta-orange-bar">
-        <a href="#" class="home-extra-cta-book-link">
-          Book a Demo
-          <span class="home-extra-cta-arrow">›</span>
-        </a>
-      </div>
-
+    <div class="sticky-content">
+      <h2>Experience The Power Of VR For Education</h2>
+      <button>BOOK YOUR FREE DEMO</button>
     </div>
 
   </div>
 
 </div>
-
+<script>
+function toggleDemo() {
+  document.getElementById("stickyDemo").classList.toggle("active");
+}
+</script>
 
 <section class="modules-section">
 
