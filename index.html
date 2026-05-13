@@ -1159,7 +1159,7 @@ $(document).ready(function () {
 
 <div class="sticky-demo-wrapper" id="stickyDemo">
 
-  <div class="sticky-tab" onclick="toggleDemo()">
+  <div class="sticky-tab" onclick="userClose()">
     <span>Book a Demo</span>
   </div>
 
@@ -1177,10 +1177,40 @@ $(document).ready(function () {
   </div>
 
 </div>
+
 <script>
-function toggleDemo() {
-  document.getElementById("stickyDemo").classList.toggle("active");
-}
+  let autoCloseTimer = null;
+  let reopenTimer = null;
+
+  function openPanel() {
+    document.getElementById("stickyDemo").classList.add("active");
+
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(function () {
+      closePanel();
+    }, 15000);
+  }
+
+  function closePanel() {
+    document.getElementById("stickyDemo").classList.remove("active");
+    clearTimeout(autoCloseTimer);
+
+    clearTimeout(reopenTimer);
+    reopenTimer = setTimeout(function () {
+      openPanel();
+    }, 5000);
+  }
+
+  function userClose() {
+    if (document.getElementById("stickyDemo").classList.contains("active")) {
+      closePanel();
+    }
+  }
+
+  // Page load ke 5 second baad open
+  setTimeout(function () {
+    openPanel();
+  }, 5000);
 </script>
 
 <section class="modules-section">

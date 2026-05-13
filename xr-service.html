@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
     <!-- FONT AWESOME CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-<body>
-
-    <!-- Navbar -->
-    <header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/li<header>
         <nav>
             <div class="logo">
                 <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
@@ -58,7 +51,14 @@
         <a href="about-us.html">About</a>
         <a href="schedule-demo.html">Schedule Demo</a>
         <a href="contact-us.html" style="background:#000;padding:10px 15px;border-radius:20px;text-align:center;">Contact Us</a>
-    </div>
+    </div>bs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <!-- Navbar -->
+    
 
     <script>
         let dropdown = document.getElementById("dropdown");
@@ -584,5 +584,61 @@ document.getElementById("back-to-top-btn").addEventListener("click", () => {
   </script>
   <!-- Whatsapp Popup -->
     
+
+  <div class="sticky-demo-wrapper" id="stickyDemo">
+
+  <div class="sticky-tab" onclick="userClose()">
+    <span>Book a Demo</span>
+  </div>
+
+  <div class="sticky-panel">
+
+    <div class="sticky-image">
+      <img src="images/extra-cta.png" alt="VR Education">
+    </div>
+
+    <div class="sticky-content">
+      <h2>Experience The Power Of VR For Education</h2>
+      <button>BOOK YOUR FREE DEMO</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  let autoCloseTimer = null;
+  let reopenTimer = null;
+
+  function openPanel() {
+    document.getElementById("stickyDemo").classList.add("active");
+
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(function () {
+      closePanel();
+    }, 15000);
+  }
+
+  function closePanel() {
+    document.getElementById("stickyDemo").classList.remove("active");
+    clearTimeout(autoCloseTimer);
+
+    clearTimeout(reopenTimer);
+    reopenTimer = setTimeout(function () {
+      openPanel();
+    }, 5000);
+  }
+
+  function userClose() {
+    if (document.getElementById("stickyDemo").classList.contains("active")) {
+      closePanel();
+    }
+  }
+
+  // Page load ke 5 second baad open
+  setTimeout(function () {
+    openPanel();
+  }, 5000);
+</script>
 </body>
 </html>

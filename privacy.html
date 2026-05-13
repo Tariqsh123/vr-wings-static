@@ -492,6 +492,60 @@ document.getElementById("back-to-top-btn").addEventListener("click", () => {
     });
   </script>
   <!-- Whatsapp Popup -->
-    
+    <div class="sticky-demo-wrapper" id="stickyDemo">
+
+  <div class="sticky-tab" onclick="userClose()">
+    <span>Book a Demo</span>
+  </div>
+
+  <div class="sticky-panel">
+
+    <div class="sticky-image">
+      <img src="images/extra-cta.png" alt="VR Education">
+    </div>
+
+    <div class="sticky-content">
+      <h2>Experience The Power Of VR For Education</h2>
+      <button>BOOK YOUR FREE DEMO</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  let autoCloseTimer = null;
+  let reopenTimer = null;
+
+  function openPanel() {
+    document.getElementById("stickyDemo").classList.add("active");
+
+    clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(function () {
+      closePanel();
+    }, 15000);
+  }
+
+  function closePanel() {
+    document.getElementById("stickyDemo").classList.remove("active");
+    clearTimeout(autoCloseTimer);
+
+    clearTimeout(reopenTimer);
+    reopenTimer = setTimeout(function () {
+      openPanel();
+    }, 5000);
+  }
+
+  function userClose() {
+    if (document.getElementById("stickyDemo").classList.contains("active")) {
+      closePanel();
+    }
+  }
+
+  // Page load ke 5 second baad open
+  setTimeout(function () {
+    openPanel();
+  }, 5000);
+</script>
 </body>
 </html>
