@@ -9,10 +9,10 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="images/logo.png">
 
-  <title>XR Service - Powering Immersive Intelligence</title>
+  <title>Pricing - Powering Immersive Intelligence</title>
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://thevrwing.com/xr-service.html">
+  <link rel="canonical" href="https://thevrwing.com/pricing.html">
 
   <!-- Favicon -->
   <link rel="icon" href="images/logo.png" type="image/png">
@@ -38,7 +38,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Powering Immersive Intelligence – VR, AR, MR, and Copilot Support">
   <meta property="og:description" content="">
-  <meta property="og:url" content="https://thevrwing.com/xr-service.html">
+  <meta property="og:url" content="https://thevrwing.com/pricing.html">
   <meta property="og:site_name" content="The VR Wing">
   <meta property="og:image" content="images/logo.png">
   <meta property="og:image:secure_url" content="images/logo.png">
@@ -215,346 +215,445 @@
 
     
 
-    <section class="service-page-hero-section-main">
-  <div class="service-page-hero-section-container">
+      <div class="pricing-hero-wrapper">
+    <div class="pricing-hero-container">
 
-    <!-- LEFT CONTENT -->
-    <div class="service-page-hero-section-text">
-      <h1 class="service-page-hero-section-heading">
-        The XR (Extended Reality) procedural skills platform that develops confident, independent learners faster
-      </h1>
+      <!-- Header -->
+      <div class="pricing-hero-header">
+        <div class="pricing-hero-badge">
+          <span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block;"></span>
+          PRICING
+        </div>
+        <h1 class="pricing-hero-title">Find a plan that's right for you.</h1>
+        <p class="pricing-hero-subtitle">
+          Flexible options for every business. Sign up today for a 30-day free trial.
+        </p>
+      </div>
 
-      <p class="service-page-hero-section-description">
-        Break onboarding bottlenecks with XR Wings Extended Reality Training, the XR training solution for health systems to maximize training outcomes while minimizing resource strain. Give your new nurses a safe, immersive, and cost-effective way to practice their skills in realistic clinical environments and give supervisors actionable performance data.
-      </p>
+      <!-- Billing Toggle -->
+      <div class="pricing-hero-controls">
+        <div class="pricing-hero-billing-toggle">
+          <button class="pricing-hero-toggle-btn active" id="pricing-hero-annual-btn">Annual</button>
+          <button class="pricing-hero-toggle-btn" id="pricing-hero-monthly-btn">Monthly</button>
+        </div>
+      </div>
 
-      <a href="schedule-demo.html" class="service-page-hero-section-btn">
-        Request a walkthrough
-      </a>
+      <!-- Pricing Grid -->
+      <div class="pricing-hero-grid">
+
+        <!-- Free -->
+        <div class="pricing-hero-card">
+          <div class="pricing-hero-plan-name">Free</div>
+          <div class="pricing-hero-plan-desc">For anyone just trying out virtual tours for the first time.</div>
+          
+          <div>
+            <div class="pricing-hero-price" id="free-price">$0</div>
+          </div>
+
+          <button class="pricing-hero-btn pricing-hero-btn-primary" 
+                  onclick="openWhatsApp('Free', '$0')">Get Started</button>
+
+          <div class="pricing-hero-features">
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Unlimited Basic Tours</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Hosting Fee Services</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Detailed Analytics</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> 24hr Support</div>
+          </div>
+        </div>
+
+        <!-- Starter -->
+        <div class="pricing-hero-card">
+          <div class="pricing-hero-plan-name">Starter</div>
+          <div class="pricing-hero-plan-desc">For those looking to customize their virtual tours, automate secure payments and give clients a dedicated portal.</div>
+          
+          <div>
+            <div class="pricing-hero-price" id="starter-price">$16.63</div>
+            <div class="pricing-hero-price-period" id="starter-period">/month billed annually</div>
+            <div class="pricing-hero-save" id="starter-save">Save $3.33/month</div>
+          </div>
+
+          <button class="pricing-hero-btn pricing-hero-btn-primary" 
+                  onclick="openWhatsApp('Starter', document.getElementById('starter-price').textContent)">Get Started</button>
+
+          <div class="pricing-hero-features">
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Everything in Free +</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> 20 Premium Tours</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Branded Client Portal</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Property Websites</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Property Heat Maps</div>
+          </div>
+        </div>
+
+        <!-- Creator -->
+        <div class="pricing-hero-card">
+          <div class="pricing-hero-plan-name">Creator</div>
+          <div class="pricing-hero-plan-desc">All the brilliant features of Starter but with more premium tours and branding options.</div>
+          
+          <div>
+            <div class="pricing-hero-price" id="creator-price">$38.29</div>
+            <div class="pricing-hero-price-period" id="creator-period">/month billed annually</div>
+            <div class="pricing-hero-save" id="creator-save">Save $7.56/month</div>
+          </div>
+
+          <button class="pricing-hero-btn pricing-hero-btn-primary" 
+                  onclick="openWhatsApp('Creator', document.getElementById('creator-price').textContent)">Get Started</button>
+
+          <div class="pricing-hero-features">
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Everything in Starter +</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> 100 Premium Tours</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> White Label Domains</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> CAPTURE3D Subdomains</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Live Support Chat</div>
+          </div>
+        </div>
+
+        <!-- Pro -->
+        <div class="pricing-hero-card">
+          <div class="pricing-hero-plan-name">Pro</div>
+          <div class="pricing-hero-plan-desc">If you're ready to dive into immersive virtual tour experiences, our Pro plan is for you.</div>
+          
+          <div>
+            <div class="pricing-hero-price" id="pro-price">$83.29</div>
+            <div class="pricing-hero-price-period" id="pro-period">/month billed annually</div>
+            <div class="pricing-hero-save" id="pro-save">Save $16.56/month</div>
+          </div>
+
+          <button class="pricing-hero-btn pricing-hero-btn-primary" 
+                  onclick="openWhatsApp('Pro', document.getElementById('pro-price').textContent)">Get Started</button>
+
+          <div class="pricing-hero-features">
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Everything in Creator +</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Unlimited Premium Tours</div>
+            <div class="pricing-hero-feature"><span class="pricing-hero-check">✔</span> Dedicated Account Manager</div>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <!-- RIGHT IMAGE -->
-    <div class="service-page-hero-section-image">
-      <img 
-        src="https://www.digitalengineering247.com/images/article/theorem_extended_reality_0722article.jpg"  
-        alt="XR Training" title="XR Training" loading="lazy" 
-        class="service-page-hero-section-img"
-      />
-    </div>
-
   </div>
-</section>
 
-<section class="service-page-hero-section-video-wrapper">
-  <div class="service-page-hero-section-video-container" id="servicePageVideoSection">
+  <script>
+    // Billing Toggle Logic
+    const isAnnual = document.getElementById('pricing-hero-annual-btn');
+    const isMonthly = document.getElementById('pricing-hero-monthly-btn');
 
-    <!-- BG VIDEO -->
-    <video 
-      class="service-page-hero-section-video"
-      autoplay 
-      muted 
-      loop 
-      playsinline>
-      <source src="video.webm" type="video/mp4">
-    </video>
+    const starterPriceEl = document.getElementById('starter-price');
+    const creatorPriceEl = document.getElementById('creator-price');
+    const proPriceEl = document.getElementById('pro-price');
 
-    <!-- OVERLAY -->
-    <div class="service-page-hero-section-overlay"></div>
+    const starterPeriod = document.getElementById('starter-period');
+    const creatorPeriod = document.getElementById('creator-period');
+    const proPeriod = document.getElementById('pro-period');
 
-    <!-- CENTER CONTENT -->
-    <div class="service-page-hero-section-content">
-      <h2 class="service-page-hero-section-video-heading">
-        Immersive Extended Reality (XR) Training Experience
-      </h2>
+    const starterSave = document.getElementById('starter-save');
+    const creatorSave = document.getElementById('creator-save');
+    const proSave = document.getElementById('pro-save');
+
+    function switchToAnnual() {
+      isAnnual.classList.add('active');
+      isMonthly.classList.remove('active');
+
+      starterPriceEl.textContent = "$16.63";
+      creatorPriceEl.textContent = "$38.29";
+      proPriceEl.textContent = "$83.29";
+
+      starterPeriod.textContent = "/month billed annually";
+      creatorPeriod.textContent = "/month billed annually";
+      proPeriod.textContent = "/month billed annually";
+
+      starterSave.textContent = "Save $3.33/month";
+      creatorSave.textContent = "Save $7.56/month";
+      proSave.textContent = "Save $16.56/month";
+    }
+
+    function switchToMonthly() {
+      isAnnual.classList.remove('active');
+      isMonthly.classList.add('active');
+
+      starterPriceEl.textContent = "$19.99";
+      creatorPriceEl.textContent = "$45.99";
+      proPriceEl.textContent = "$99.99";
+
+      starterPeriod.textContent = "/month billed monthly";
+      creatorPeriod.textContent = "/month billed monthly";
+      proPeriod.textContent = "/month billed monthly";
+
+      starterSave.textContent = "";
+      creatorSave.textContent = "";
+      proSave.textContent = "";
+    }
+
+    isAnnual.addEventListener('click', switchToAnnual);
+    isMonthly.addEventListener('click', switchToMonthly);
+
+    // WhatsApp Function
+    function openWhatsApp(planName, price) {
+      const message = `Hi, I'm interested in the *${planName}* plan at *${price}*. Please provide more details.`;
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://api.whatsapp.com/send?phone=447463151997&text=${encodedMessage}`;
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+
+
+<div class="pricing-table-container">
+
+    <div class="pricing-table-wrapper">
+
+        <!-- Main Clickable Header -->
+        <div class="pricing-table-main-header" id="pricing-table-main-header">
+            <div class="pricing-table-title">Compare plans and features</div>
+            <span class="pricing-table-toggle-icon">⮟</span>
+        </div>
+
+        <!-- Table Content -->
+        <div class="pricing-table-content" id="pricing-table-content">
+            <table class="pricing-table-table">
+                <thead>
+                    <tr>
+                        <th style="width: 300px; text-align: left;">Features</th>
+                        <th class="pricing-table-plan-header">Free</th>
+                        <th class="pricing-table-plan-header">Starter</th>
+                        <th class="pricing-table-plan-header">Creator</th>
+                        <th class="pricing-table-plan-header">Pro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI Image Generation</strong></td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Premium prompts & templates</strong></td>
+                        <td>—</td>
+                        <td>20 / month</td>
+                        <td>Unlimited</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Custom model training</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Watermark removal</strong></td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commercial license</strong></td>
+                        <td>—</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Usage Analytics</strong></td>
+                        <td>Basic</td>
+                        <td>Advanced</td>
+                        <td>Advanced</td>
+                        <td>Advanced + Export</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Priority Support</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>Email</td>
+                        <td>Priority</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API Access</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>Limited</td>
+                        <td>Full Access</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-
-  </div>
-</section>
+</div>
 
 <script>
-const section = document.getElementById("servicePageVideoSection");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        section.classList.add("active");
-      } else {
-        section.classList.remove("active");
-      }
+    document.getElementById('pricing-table-main-header').addEventListener('click', function() {
+        const content = document.getElementById('pricing-table-content');
+        this.classList.toggle('open');
+        content.classList.toggle('open');
     });
-  },
-  { threshold: 0.5 }
-);
-
-observer.observe(section);
 </script>
 
-<section class="stronger-section">
 
-  <div class="container">
+<section class="pricing-demand-text-container">
 
-    <!-- HEADING -->
-    <h2 class="section-heading">
-      Stronger teams. Smarter care with Extended Reality.
-    </h2>
-
-    <!-- SECTION 1 (LEFT IMAGE) -->
-    <div class="section-row" id="stronger-row-reverse">
-      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68daae4578ce71339240122e_Built%20for%20graphic-p-800.jpg" alt="Healthcare systems" title="Healthcare systems" loading="lazy">
-
-      <div class="text-box">
-        <h3>Built for modern healthcare systems</h3>
-        <p>
-          Designed in collaboration with clinicians, educators, and healthcare leaders,
-          our XR-powered training scenarios help teams deliver safer, faster, and more consistent patient care.
-        </p>
-      </div>
-    </div>
-
-    <!-- SECTION 2 (RIGHT IMAGE) -->
-    <div class="section-row reverse">
-      <div class="text-box">
-        <h3>Learn, experience, and collaborate in real time</h3>
-        <p>
-          The XR training platform immerses learners in fully interactive extended reality environments,
-          where they can practice procedures, build confidence, and collaborate with instructors and peers.
-        </p>
-      </div>
-
-      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d9a3321cd6352b16667fc1_Built%20for%20nursing%20graphic.jpg" alt="XR Training" title="XR Training" loading="lazy">
-    </div>
-
-    <!-- SECTION 3 (LEFT IMAGE AGAIN) -->
-    <div class="section-row" id="stronger-row-reverse">
-      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d99780ee8e329fe016fbc5_Debrief%20feature%20graphic%20plain.jpg" alt="Standards into action" title="Standards into action" loading="lazy">
-
-      <div class="text-box">
-        <h3>Turning standards into actionable XR guidance</h3>
-        <p>
-          Our XR-powered Domains of Excellence framework transforms complex clinical standards
-          into immersive simulation-based guidance, helping healthcare teams act with clarity and confidence.
-        </p>
-      </div>
-    </div>
-
-  </div>
-
+  <h2>Matterport Services on <br> Demand</h2>
+  <p>Purchase credits to order our industry-leading services. The VR Wings credits are used to order our Floor Plan, Photo Retouching and Post-Production services.</p>
 </section>
 
-<section class="service-page-popup-section-main">
 
-  <h2 class="service-page-popup-section-heading">
-    Flexible ways to train.<br> Powered by Extended Reality.
-  </h2>
-
-  <div class="service-page-popup-section-grid">
-
-    <!-- CARD 1 -->
-    <div class="service-page-popup-section-card">
-
-      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6c0d013c2c30cdb67dd72_Independent%20Training%20Graphic%20Green.avif" class="service-page-popup-section-img" title="service-page-popup-section-img" loading="lazy">
-
-      <!-- TAG -->
-      <div class="service-page-popup-section-tag service-page-popup-section-tag-left">
-        <span>XR Guided Mode</span>
-        <div class="service-page-popup-section-plus">
-          +
-          <div class="service-page-popup-section-popup">
-            Practice real clinical procedures in fully immersive XR environments with step-by-step guidance.
-          </div>
+<div class="pricing-popup-container-main">
+    <!-- Main Section -->
+    <div class="pricing-popup-container-section">
+        
+        <!-- Cards -->
+        <div class="pricing-popup-container-cards">
+            
+            <!-- Card 1 -->
+            <div class="pricing-popup-container-card" data-index="0">
+                <div class="pricing-popup-container-card-image">
+                    <img src="https://captur3d.io/wp-content/uploads/2024/05/Plans-and-pricing_Floor-plans-1200x800.webp" alt="Floor Plans" title="Floor Plans" loading="lazy">
+                </div>
+                <div class="pricing-popup-container-card-content">
+                    <h3 class="pricing-popup-container-card-title">Floor plans</h3>
+                    <div class="pricing-popup-container-price">
+                        <span class="pricing-popup-container-credits">16 credits</span>
+                        <span class="pricing-popup-container-price-detail">($16.00) per order</span>
+                    </div>
+                    <div class="pricing-popup-container-plus-btn">+</div>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="pricing-popup-container-card" data-index="1">
+                <div class="pricing-popup-container-card-image">
+                    <img src="https://captur3d.io/wp-content/uploads/2024/05/Services-Photo-Retouching-Before-and-after-1200x800.webp" alt="Photo Retouching" title="Photo Retouching" loading="lazy">
+                </div>
+                <div class="pricing-popup-container-card-content">
+                    <h3 class="pricing-popup-container-card-title">Photo retouching</h3>
+                    <div class="pricing-popup-container-price">
+                        <span class="pricing-popup-container-credits">1 credit</span>
+                        <span class="pricing-popup-container-price-detail">($1.00) per photo</span>
+                    </div>
+                    <div class="pricing-popup-container-plus-btn">+</div>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="pricing-popup-container-card" data-index="2">
+                <div class="pricing-popup-container-card-image">
+                    <img src="https://captur3d.io/wp-content/uploads/2024/05/Plans-and-pricing_-Matterport-Workshop-Assistant-1200x720.webp" alt="Matterport Workshop Assistant" title="Matterport Workshop Assistant" loading="lazy">
+                </div>
+                <div class="pricing-popup-container-card-content">
+                    <h3 class="pricing-popup-container-card-title">Matterport workshop assistant</h3>
+                    <div class="pricing-popup-container-price">
+                        <span class="pricing-popup-container-credits">10 credits</span>
+                        <span class="pricing-popup-container-price-detail">($10.00) per property</span>
+                    </div>
+                    <div class="pricing-popup-container-plus-btn">+</div>
+                </div>
+            </div>
+            
         </div>
-      </div>
-
-      <div class="service-page-popup-section-tag service-page-popup-section-tag-center">
-        <div class="service-page-popup-section-plus">
-          +
-          <div class="service-page-popup-section-popup">
-            Build confidence through realistic XR simulations without any risk to patients.
-          </div>
-        </div>
-        <span>Skill Practice Mode</span>
-      </div>
-
-      <h3 class="service-page-popup-section-title">
-        Independent XR Training
-      </h3>
-
     </div>
 
-    <!-- CARD 2 -->
-    <div class="service-page-popup-section-card">
-
-      <img src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6c035b815e7128ce4722a_Collab%20Training%20Graphic%20Blue.avif" class="service-page-popup-section-img" title="service-page-popup-section-img" alt="service-page-popup-section-img" loading="lazy">
-
-      <div class="service-page-popup-section-tag service-page-popup-section-tag-right">
-        <div class="service-page-popup-section-plus">
-          +
-          <div class="service-page-popup-section-popup">
-            Collaborate in shared XR environments for real-time team-based learning and coordination.
-          </div>
+    <!-- Popup Overlay -->
+    <div id="pricing-popup-container-overlay" class="pricing-popup-container-overlay">
+        <div class="pricing-popup-container-modal">
+            <button id="pricing-popup-container-close" class="pricing-popup-container-close-btn">✕</button>
+            <div id="pricing-popup-container-modal-content"></div>
         </div>
-        <span>XR Collaboration Mode</span>
-      </div>
-
-      <h3 class="service-page-popup-section-title">
-        Collaborative XR Training
-      </h3>
-
     </div>
-
-  </div>
-
-</section>
-
-<section class="service-page-laptop-section-main">
-
-  <div class="service-page-laptop-section-container">
-
-    <h2 class="service-page-laptop-section-heading">
-      XR Wings™ Extended Reality Learning Platform
-    </h2>
-
-    <span class="service-page-laptop-section-subheading">
-      One platform to centralize all immersive XR learning and analytics.
-    </span>
-
-    <div class="service-page-laptop-section-image-wrap">
-      <img 
-        src="https://cdn.prod.website-files.com/60c079a900a87db2d13e7134/68d6a9d45eb01e0dd4c2cf42_MacBook-Pro-16.avif" 
-        alt="Laptop Platform" title="Laptop Platform" loading="lazy"
-        class="service-page-laptop-section-img"
-      >
-    </div>
-
-    <p class="service-page-laptop-section-description">
-      XR Wings™ is a powerful centralized XR learning platform designed to streamline immersive training, enhance clinical skill development, and deliver real-time performance insights. It enables organizations to train learners in realistic extended reality environments while tracking progress through advanced analytics. With an intuitive and scalable system, it helps healthcare teams improve efficiency, reduce training costs, and ensure consistent outcomes across all experience levels.
-    </p>
-
-  </div>
-
-</section>
-
-<section class="service-page-laptop-section-box-wrapper">
-
-  <div class="service-page-laptop-section-box">
-
-    <h2 class="service-page-laptop-section-box-heading">
-      6 Domains of Excellence™
-    </h2>
-
-    <span class="service-page-laptop-section-box-subheading">
-      Align nursing skills training to critical system priorities
-    </span>
-
-    <p class="service-page-laptop-section-box-description">
-      With XR Wings™, your training is connected to systemwide priorities through immersive extended reality scenarios built on national healthcare standards and competency benchmarks. This ensures every learning experience directly supports safer, more consistent clinical performance.
-    </p>
-
-  </div>
-
-</section>
-
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<section class="service-page-card-carousel-section">
-
-  <div class="service-page-card-carousel-header">
-    <h2 class="service-page-card-carousel-title">
-      Join the system leaders choosing XR Wings™
-    </h2>
-    <p class="service-page-card-carousel-subtitle">
-      Here’s how healthcare educators are transforming training with XR Wings™
-    </p>
-  </div>
-
-  <div class="swiper service-page-card-carousel-swiper">
-
-    <div class="swiper-wrapper service-page-card-carousel-wrapper">
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-green">
-          <h4>Flexibility</h4>
-          <h3>Multimodal XR training designed for every learning style</h3>
-          <p>Supports independent, peer-based and instructor-led immersive XR learning in one unified platform.</p>
-        </div>
-      </div>
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-yellow">
-          <h4>Efficiency</h4>
-          <h3>High-frequency XR practice without limitations</h3>
-          <p>Repeat clinical simulations in extended reality environments without physical resources or overhead.</p>
-        </div>
-      </div>
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-purple">
-          <h4>Value</h4>
-          <h3>Faster clinical readiness through XR training</h3>
-          <p>Improves onboarding speed and workforce readiness with measurable outcomes.</p>
-        </div>
-      </div>
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-blue">
-          <h4>Scalability</h4>
-          <h3>Train unlimited learners in XR environments</h3>
-          <p>Scale immersive training across departments without additional infrastructure.</p>
-        </div>
-      </div>
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-pink">
-          <h4>Engagement</h4>
-          <h3>Immersive XR learning that improves retention</h3>
-          <p>Realistic extended reality simulations enhance long-term clinical skill memory.</p>
-        </div>
-      </div>
-
-      <div class="swiper-slide service-page-card-carousel-slide">
-        <div class="service-page-card-carousel-card service-page-card-carousel-dark">
-          <h4>Consistency</h4>
-          <h3>Standardized XR training across all learners</h3>
-          <p>Ensures consistent competency assessment across all healthcare teams.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Pagination dots -->
-    <div class="swiper-pagination service-page-card-carousel-pagination"></div>
-
-  </div>
-</section>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</div>
 
 <script>
-const servicePageCardCarouselSwiper = new Swiper(".service-page-card-carousel-swiper", {
-  loop: true,
-  autoplay: {
-    delay: 2000,
-    disableOnInteraction: false,
-  },
-  speed: 800,
-  slidesPerView: 3,
-  spaceBetween: 20,
+    const services = [
+        {
+            title: "Floor plans",
+            image: "https://captur3d.io/wp-content/uploads/2024/05/Plans-and-pricing_Floor-plans-1200x800.webp",
+            credits: "16 credits ($16.00) per order",
+            points: [
+                "High-resolution 2D floor plans",
+                "Accurate room dimensions",
+                "Custom branding options",
+                "Multiple format exports (PDF, PNG, JPG)",
+                "Furniture and labeling included",
+                "Fast turnaround time"
+            ]
+        },
+        {
+            title: "Photo retouching",
+            image: "https://captur3d.io/wp-content/uploads/2024/05/Services-Photo-Retouching-Before-and-after-1200x800.webp",
+            credits: "1 credit ($1.00) per photo",
+            points: [
+                "Professional color correction",
+                "Remove unwanted objects",
+                "Enhance lighting and shadows",
+                "Straighten and perspective correction",
+                "HDR tone mapping",
+                "Before & after delivery"
+            ]
+        },
+        {
+            title: "Matterport workshop assistant",
+            image: "https://captur3d.io/wp-content/uploads/2024/05/Plans-and-pricing_-Matterport-Workshop-Assistant-1200x720.webp",
+            credits: "10 credits ($10.00) per property",
+            points: [
+                "AI-powered Matterport optimization",
+                "Automatic tag and note generation",
+                "Virtual staging suggestions",
+                "Measurement verification",
+                "360° tour enhancement",
+                "Detailed property reports"
+            ]
+        }
+    ];
 
-  pagination: {
-    el: ".service-page-card-carousel-pagination",
-    clickable: true,
-  },
+    function openPricingPopup(index) {
+        const service = services[index];
+        const modalContent = document.getElementById('pricing-popup-container-modal-content');
+        
+        modalContent.innerHTML = `
+            <div class="pricing-popup-container-modal-image">
+                <img src="${service.image}" alt="${service.title}">
+            </div>
+            <div class="pricing-popup-container-modal-body">
+                <h2 class="pricing-popup-container-modal-title">${service.title}</h2>
+                <p style="font-size:18px; color:#6b7280; margin-bottom:25px;">
+                    ${service.credits}
+                </p>
+                <ul class="pricing-popup-container-modal-points">
+                    ${service.points.map(point => `<li>${point}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+        
+        document.getElementById('pricing-popup-container-overlay').style.display = 'flex';
+    }
 
-  breakpoints: {
-    320: { slidesPerView: 1 },
-    768: { slidesPerView: 2 },
-    1024: { slidesPerView: 3 }
-  }
-});
+    // Add click event to all cards and plus buttons
+    document.querySelectorAll('.pricing-popup-container-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            const index = this.getAttribute('data-index');
+            openPricingPopup(parseInt(index));
+        });
+    });
+
+    // Close popup
+    document.getElementById('pricing-popup-container-close').addEventListener('click', function() {
+        document.getElementById('pricing-popup-container-overlay').style.display = 'none';
+    });
+
+    // Close when clicking outside modal
+    document.getElementById('pricing-popup-container-overlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+
+    // Escape key support
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Escape") {
+            document.getElementById('pricing-popup-container-overlay').style.display = 'none';
+        }
+    });
 </script>
-
 
 <section class="cta-section">
 
@@ -573,14 +672,15 @@ const servicePageCardCarouselSwiper = new Swiper(".service-page-card-carousel-sw
   <div class="cta-content">
     <h2>Purposeful Practice.<br>Confident Care.</h2>
 
-    <button class="cta-btn">
+    <a href="contact-us.html" title="Contact Us"> <button class="cta-btn">
       Speak to our team →
-    </button>
+    </button></a>
 
     <p>Join the leading healthcare institutions using VR Wings</p>
   </div>
 
 </section>
+    
     
 
 
